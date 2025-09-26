@@ -450,24 +450,26 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-white/40 backdrop-blur-md flex items-center justify-center z-50 p-[60px]" onClick={() => setFullscreenPhoto(null)}>
-          <div className="relative w-full h-full bg-background-secondary/95 backdrop-blur-sm rounded-3xl border border-border/50 shadow-2xl overflow-hidden flex items-center justify-center">
-            <div className="p-[30px] w-full h-full flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-8" onClick={() => setFullscreenPhoto(null)}>
+          <div 
+            className="relative max-w-6xl max-h-[90vh] bg-background border border-border/20 rounded-2xl overflow-hidden flex items-center justify-center"
+            style={{
+              boxShadow: '0 0 60px rgba(59, 130, 246, 0.3), 0 0 120px rgba(59, 130, 246, 0.1), 0 25px 50px rgba(0, 0, 0, 0.4)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-8 flex items-center justify-center min-w-[600px] min-h-[400px]">
               <img
                 src={getCurrentImageUrl(fullscreenPhoto)}
                 alt="Fullscreen photo"
-                className="max-w-full max-h-full object-contain cursor-pointer rounded-xl shadow-2xl"
-                style={{
-                  filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.1))'
-                }}
-                onClick={() => setFullscreenPhoto(null)}
+                className="max-w-full max-h-[80vh] object-contain rounded-lg"
               />
             </div>
             <button
               onClick={() => setFullscreenPhoto(null)}
-              className="absolute top-8 right-8 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all backdrop-blur-sm border border-white/20"
+              className="absolute top-4 right-4 bg-black/80 hover:bg-black text-white rounded-full p-2 transition-all border border-white/10"
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             </button>
           </div>
         </div>

@@ -93,18 +93,18 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
     return () => document.removeEventListener("paste", handlePaste);
   }, [handlePaste]);
 
-    return (
-      <div className="sticky top-20 space-y-4">
-        {/* Upload area */}
-        <div
-          className={`upload-widget p-4 text-center cursor-pointer min-h-[140px] ${
-            isDragOver ? "drag-over" : ""
-          }`}
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onClick={handleClick}
-        >
+  return (
+    <div className="sticky top-20 space-y-4">
+      {/* Upload area */}
+      <div
+        className={`upload-widget p-4 text-center cursor-pointer min-h-[140px] ${
+          isDragOver ? "drag-over" : ""
+        }`}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onClick={handleClick}
+      >
         <input
           ref={fileInputRef}
           type="file"

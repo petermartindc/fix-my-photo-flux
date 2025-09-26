@@ -85,9 +85,9 @@ const Index = () => {
       
       <div className="relative">
         {/* Left Column - Upload Widget - Fixed and aligned with header */}
-        <div className="hidden sm:block left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] overflow-y-auto z-40"
+        <div className="hidden sm:block left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 w-[275px] sm:w-[295px] md:w-[315px] lg:w-[335px] xl:w-[355px] overflow-y-auto z-40"
              style={{
-               left: 'max(-1px, calc((100vw - 1280px) / 2 - 1px))'
+               left: 'max(-51px, calc((100vw - 1280px) / 2 - 51px))'
              }}>
           <UploadWidget 
             onFileSelect={handleFileSelect}
@@ -97,7 +97,7 @@ const Index = () => {
 
         {/* Main Content Container */}
         <div className="container mx-auto px-6 py-6">
-          <div className="ml-0 sm:ml-[316px] md:ml-[336px] lg:ml-[356px] xl:ml-[376px]">
+          <div className="ml-0 sm:ml-[311px] md:ml-[331px] lg:ml-[351px] xl:ml-[371px]">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>

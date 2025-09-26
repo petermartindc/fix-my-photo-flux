@@ -31,7 +31,7 @@ const Index = () => {
       timestamp: "Processing...",
       dimensions: "Processing...",
       fileSize: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-      model: "Context Pro"
+      model: "Kontext Pro"
     };
 
     setProcessingPhoto(newPhoto);

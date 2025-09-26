@@ -38,7 +38,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 minutes ago",
     dimensions: "800x600",
     fileSize: "2.1 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   },
   {
     id: "2",
@@ -46,9 +46,9 @@ const samplePhotos: PhotoResult[] = [
     fixedUrl: samplePhoto2,
     videoUrl: samplePhoto2,
     timestamp: "15 minutes ago",
-    dimensions: "800x600",
+    dimensions: "600x900",
     fileSize: "1.8 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   },
   {
     id: "3",
@@ -57,16 +57,16 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 hour ago",
     dimensions: "800x600",
     fileSize: "2.3 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   },
   {
     id: "4",
     originalUrl: samplePhoto4,
     fixedUrl: samplePhoto4,
     timestamp: "2 hours ago",
-    dimensions: "800x600",
+    dimensions: "700x1000",
     fileSize: "1.9 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   },
   {
     id: "5",
@@ -76,16 +76,16 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "3 hours ago",
     dimensions: "800x600",
     fileSize: "2.0 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   },
   {
     id: "6",
     originalUrl: samplePhoto6,
     fixedUrl: samplePhoto6,
     timestamp: "1 day ago",
-    dimensions: "800x600",
+    dimensions: "600x850",
     fileSize: "1.7 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   },
   {
     id: "7",
@@ -94,7 +94,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 days ago",
     dimensions: "800x600",
     fileSize: "2.4 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   },
   {
     id: "8",
@@ -102,9 +102,9 @@ const samplePhotos: PhotoResult[] = [
     fixedUrl: samplePhoto8,
     videoUrl: samplePhoto8,
     timestamp: "3 days ago",
-    dimensions: "800x600",
+    dimensions: "750x1100",
     fileSize: "2.2 MB",
-    model: "Context Pro"
+    model: "Kontext Pro"
   }
 ];
 
@@ -258,8 +258,9 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                           title="Turn the restored photo into a 5-second animated video"
                         >
                           <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
-                            <span className="text-white font-semibold text-xs">Make Video</span>
+                            <span className="text-white font-bold text-lg">▶</span>
                           </div>
+                          Make Video
                         </button>
                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
                           Turn the restored photo into a 5-second animated video

@@ -450,17 +450,19 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-[60px]" onClick={() => setFullscreenPhoto(null)}>
-          <div className="relative w-full h-full flex items-center justify-center">
-            <img
-              src={getCurrentImageUrl(fullscreenPhoto)}
-              alt="Fullscreen photo"
-              className="w-full h-full object-contain cursor-pointer"
-              onClick={() => setFullscreenPhoto(null)}
-            />
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-lg flex items-center justify-center z-50 p-[30px]" onClick={() => setFullscreenPhoto(null)}>
+          <div className="relative w-full h-full bg-background-secondary/95 backdrop-blur-sm rounded-2xl border border-border/50 shadow-2xl overflow-hidden">
+            <div className="absolute inset-0 p-8 flex items-center justify-center">
+              <img
+                src={getCurrentImageUrl(fullscreenPhoto)}
+                alt="Fullscreen photo"
+                className="max-w-full max-h-full object-contain cursor-pointer rounded-lg shadow-lg"
+                onClick={() => setFullscreenPhoto(null)}
+              />
+            </div>
             <button
               onClick={() => setFullscreenPhoto(null)}
-              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+              className="absolute top-6 right-6 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all backdrop-blur-sm border border-white/20"
             >
               <X className="h-6 w-6" />
             </button>

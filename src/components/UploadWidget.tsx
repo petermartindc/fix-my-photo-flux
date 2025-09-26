@@ -165,8 +165,8 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
         <Textarea
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
-          placeholder="Describe changes you'd like..."
-          className="min-h-[85px] resize-none text-sm"
+          placeholder=""
+          className="min-h-[85px] resize-none text-sm bg-background-secondary"
         />
       </div>
 

@@ -83,10 +83,10 @@ const Index = () => {
     <div className="min-h-screen bg-background pt-16">
       <Header />
       
-      <div className="container mx-auto px-6 py-6">
+      <div className="container mx-auto px-6 py-6 max-w-[1280px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-screen">
           {/* Left Column - Upload Widget */}
-          <div className="lg:col-span-3 left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 left-6 w-[calc(25%-2.375rem)] overflow-y-auto">
+          <div className="left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 left-6 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] overflow-y-auto">
             <UploadWidget 
               onFileSelect={handleFileSelect}
               isProcessing={!!processingPhoto}
@@ -94,7 +94,7 @@ const Index = () => {
           </div>
 
           {/* Center and Right Columns - Tethered Container */}
-          <div className="lg:col-span-9 lg:col-start-4 pl-0">
+          <div className="ml-[296px] sm:ml-[316px] md:ml-[336px] lg:ml-[356px] xl:ml-[376px]">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>

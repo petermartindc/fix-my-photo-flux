@@ -315,7 +315,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
               {/* Left side - Image */}
               <div className="lg:col-span-8">
                 <div 
-                  className="min-h-[300px] max-h-[500px] bg-muted overflow-hidden cursor-pointer relative flex items-center justify-center"
+                  className="min-h-[300px] max-h-[500px] bg-muted overflow-hidden cursor-pointer relative flex items-start justify-center"
                   onClick={() => setFullscreenPhoto(photo)}
                 >
                   <img

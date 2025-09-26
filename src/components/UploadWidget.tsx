@@ -125,13 +125,13 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
             <Button
               variant="secondary"
               size="sm"
-              className="absolute top-2 right-2 h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground transition-colors"
+              className="absolute -top-1 -right-1 h-9 w-9 p-0 hover:bg-white hover:text-black transition-colors border border-white/20 hover:border-white"
               onClick={(e) => {
                 e.stopPropagation();
                 handleClear();
               }}
             >
-              <X className="h-5 w-5" />
+              <X className="h-6 w-6" />
             </Button>
           </div>
         ) : (
@@ -151,7 +151,17 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
 
       {/* Instructions */}
       <div className="space-y-2">
-        <label className="text-sm font-medium">Custom Instructions</label>
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium">Custom Instructions</label>
+          <div className="relative group">
+            <div className="h-4 w-4 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs cursor-help">
+              i
+            </div>
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 w-64 text-center leading-relaxed">
+              Provide specific instructions for how you'd like your photo enhanced. For example: "Remove background," "Fix lighting," "Remove person in red shirt," or "Make colors more vibrant."
+            </div>
+          </div>
+        </div>
         <Textarea
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}

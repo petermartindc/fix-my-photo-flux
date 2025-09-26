@@ -174,7 +174,6 @@
   .btn-secondary:hover {
     background: hsl(var(--secondary-hover));
     box-shadow: 0 4px 15px -4px hsl(var(--secondary) / 0.4), 0 0 15px hsl(var(--primary) / 0.1);
-    transform: translateY(-1px);
   }
 
   /* Utility classes */

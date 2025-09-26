@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import UploadWidget from "@/components/UploadWidget";
 import PhotoFeed from "@/components/PhotoFeed";
-import PhotoControls from "@/components/PhotoControls";
 
 interface PhotoResult {
   id: string;
@@ -99,21 +98,11 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                {/* Center Column - Photo Feed */}
-                <div className="lg:col-span-8">
-                  <PhotoFeed
-                    onPhotoSelect={handlePhotoSelect}
-                    processingPhoto={processingPhoto}
-                    processingProgress={processingProgress}
-                  />
-                </div>
-
-                {/* Right Column - Controls */}
-                <div className="lg:col-span-4">
-                  <PhotoControls />
-                </div>
-              </div>
+              <PhotoFeed
+                onPhotoSelect={handlePhotoSelect}
+                processingPhoto={processingPhoto}
+                processingProgress={processingProgress}
+              />
             </div>
           </div>
         </div>

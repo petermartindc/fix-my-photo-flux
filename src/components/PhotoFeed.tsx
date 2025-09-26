@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Download, Share2, RotateCcw, Play } from "lucide-react";
+import { Download, Share2, RotateCcw, Play, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Import sample photos
@@ -151,17 +151,98 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
         </div>
       )}
 
-      {/* Stacked photo results */}
+      {/* Stacked photo results with integrated controls */}
       <div className="space-y-8">
         {samplePhotos.map((photo) => (
-          <div key={photo.id} className="space-y-6">
-            <div className="w-full">
-              <div className="relative overflow-hidden rounded-lg photo-card" style={{ minHeight: 'calc(75vh / 8)' }}>
-                <img
-                  src={photo.fixedUrl}
-                  alt="Restored photo"
-                  className="w-full h-full object-cover"
-                />
+          <div key={photo.id} className="photo-card rounded-xl overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+              {/* Left side - Image */}
+              <div className="lg:col-span-8">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={photo.fixedUrl}
+                    alt="Restored photo"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              
+              {/* Right side - Controls and info */}
+              <div className="lg:col-span-4 p-6 bg-card flex flex-col justify-between">
+                {/* Photo info */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-muted-foreground">{photo.timestamp}</p>
+                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                      {photo.model}
+                    </span>
+                  </div>
+                  
+                  {photo.instructions && (
+                    <p className="text-sm font-medium">{photo.instructions}</p>
+                  )}
+                  
+                  <div className="space-y-1 text-xs text-muted-foreground">
+                    <p>{photo.dimensions}</p>
+                    <p>{photo.fileSize}</p>
+                  </div>
+                </div>
+                
+                {/* View toggles */}
+                <div className="space-y-4">
+                  <div className="flex space-x-2">
+                    <button className="flex-1 p-2 rounded-lg text-xs bg-secondary text-secondary-foreground hover:bg-secondary-hover transition-all">
+                      <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden">
+                        <img src={photo.originalUrl} alt="Original" className="w-full h-full object-cover" />
+                      </div>
+                      Original
+                    </button>
+                    
+                    <button className="flex-1 p-2 rounded-lg text-xs bg-primary text-primary-foreground transition-all">
+                      <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden">
+                        <img src={photo.fixedUrl} alt="Enhanced" className="w-full h-full object-cover" />
+                      </div>
+                      Enhanced
+                    </button>
+                    
+                    {photo.videoUrl ? (
+                      <button className="flex-1 p-2 rounded-lg text-xs bg-secondary text-secondary-foreground hover:bg-secondary-hover transition-all">
+                        <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden relative">
+                          <img src={photo.fixedUrl} alt="Video" className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <Play className="h-3 w-3 text-white" />
+                          </div>
+                        </div>
+                        Video
+                      </button>
+                    ) : (
+                      <button className="flex-1 p-2 rounded-lg text-xs bg-secondary text-secondary-foreground hover:bg-secondary-hover transition-all">
+                        <div className="aspect-[4/3] bg-muted rounded mb-1 flex items-center justify-center">
+                          <Video className="h-4 w-4 text-muted-foreground" />
+                        </div>
+                        Make Video
+                      </button>
+                    )}
+                  </div>
+                  
+                  {/* Action buttons */}
+                  <div className="space-y-2">
+                    <Button size="sm" className="w-full btn-primary">
+                      <Download className="h-4 w-4 mr-2" />
+                      Download
+                    </Button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button size="sm" variant="secondary" className="btn-secondary">
+                        <Share2 className="h-4 w-4 mr-1" />
+                        Share
+                      </Button>
+                      <Button size="sm" variant="secondary" className="btn-secondary">
+                        <RotateCcw className="h-4 w-4 mr-1" />
+                        Fix Again
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

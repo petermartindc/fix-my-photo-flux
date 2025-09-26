@@ -56,6 +56,9 @@
     --upload-border: 217 91% 60%;
     --upload-bg: 220 13% 12%;
     --upload-hover: 220 13% 14%;
+    
+    /* Left column background */
+    --left-column-bg: 220 13% 9%;
 
     /* Progress and loading */
     --progress-bg: 220 13% 16%;
@@ -113,7 +116,7 @@
 
   /* Photo card styles */
   .photo-card {
-    @apply relative rounded-xl overflow-hidden transition-all duration-300;
+    @apply relative rounded-xl overflow-hidden transition-all duration-300 mb-6;
     background: var(--gradient-card);
     box-shadow: var(--shadow-card);
   }
@@ -121,6 +124,22 @@
   .photo-card:hover {
     box-shadow: var(--shadow-hover);
     transform: translateY(-2px);
+  }
+  
+  /* Left column background */
+  .left-column-bg {
+    background-color: hsl(var(--left-column-bg));
+  }
+  
+  /* Thumbnail overlays */
+  .thumbnail-overlay {
+    @apply absolute z-10 rounded-lg overflow-hidden border-2 border-white/20 transition-all duration-300;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .thumbnail-overlay:hover {
+    border-color: hsl(var(--primary) / 0.6);
+    transform: scale(1.05);
   }
   
   /* Processing animation */

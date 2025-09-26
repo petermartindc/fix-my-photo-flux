@@ -139,8 +139,8 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
         </div>
       )}
 
-      {/* Photo grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Stacked photo results */}
+      <div className="space-y-6">
         {samplePhotos.map((photo) => (
           <div
             key={photo.id}
@@ -149,41 +149,94 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
             onMouseLeave={() => setHoveredPhoto(null)}
             onClick={() => handlePhotoClick(photo)}
           >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img
-                src={photo.fixedUrl}
-                alt="Restored photo"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              
-              {/* Hover overlay */}
-              <div className={`
-                absolute inset-0 bg-black/60 flex items-center justify-center space-x-2
-                transition-opacity duration-300
-                ${hoveredPhoto === photo.id ? 'opacity-100' : 'opacity-0 md:opacity-0'}
-                opacity-100 md:opacity-0
-              `}>
-                <Button size="sm" variant="secondary" className="btn-secondary">
-                  <Download className="h-4 w-4 mr-1" />
-                  <span className="hidden sm:inline">Download</span>
-                </Button>
-                <Button size="sm" variant="secondary" className="btn-secondary">
-                  <Share2 className="h-4 w-4 mr-1" />
-                  <span className="hidden sm:inline">Share</span>
-                </Button>
-                <Button size="sm" variant="secondary" className="btn-secondary">
-                  <RotateCcw className="h-4 w-4 mr-1" />
-                  <span className="hidden sm:inline">Fix Again</span>
-                </Button>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Left side - Fixed image with overlaid thumbnails */}
+              <div className="lg:col-span-2 relative">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+                  <img
+                    src={photo.fixedUrl}
+                    alt="Restored photo"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                  
+                  {/* Original image thumbnail overlay - top left */}
+                  <div className="thumbnail-overlay top-4 left-4 w-20 h-16">
+                    <img
+                      src={photo.originalUrl}
+                      alt="Original photo"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <span className="text-white text-xs font-medium">Before</span>
+                    </div>
+                  </div>
+                  
+                  {/* Video thumbnail overlay - bottom right (if exists) */}
+                  {photo.videoUrl && (
+                    <div className="thumbnail-overlay bottom-4 right-4 w-20 h-16">
+                      <img
+                        src={photo.fixedUrl}
+                        alt="Video thumbnail"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <Play className="h-4 w-4 text-white" />
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Hover overlay */}
+                  <div className={`
+                    absolute inset-0 bg-black/60 flex items-center justify-center space-x-2
+                    transition-opacity duration-300
+                    ${hoveredPhoto === photo.id ? 'opacity-100' : 'opacity-0 md:opacity-0'}
+                    opacity-100 md:opacity-0
+                  `}>
+                    <Button size="sm" variant="secondary" className="btn-secondary">
+                      <Download className="h-4 w-4 mr-1" />
+                      <span className="hidden sm:inline">Download</span>
+                    </Button>
+                    <Button size="sm" variant="secondary" className="btn-secondary">
+                      <Share2 className="h-4 w-4 mr-1" />
+                      <span className="hidden sm:inline">Share</span>
+                    </Button>
+                    <Button size="sm" variant="secondary" className="btn-secondary">
+                      <RotateCcw className="h-4 w-4 mr-1" />
+                      <span className="hidden sm:inline">Fix Again</span>
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            {/* Photo info */}
-            <div className="p-4">
-              <p className="text-sm text-muted-foreground mb-1">{photo.timestamp}</p>
-              {photo.instructions && (
-                <p className="text-sm line-clamp-2">{photo.instructions}</p>
-              )}
+              
+              {/* Right side - Information and actions */}
+              <div className="lg:col-span-1 p-4 space-y-4">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-2">{photo.timestamp}</p>
+                  {photo.instructions && (
+                    <p className="text-sm mb-4">{photo.instructions}</p>
+                  )}
+                </div>
+                
+                <div className="space-y-2 text-xs text-muted-foreground">
+                  <p>{photo.dimensions}</p>
+                  <p>{photo.fileSize}</p>
+                </div>
+                
+                <div className="pt-4 space-y-2">
+                  <Button size="sm" className="w-full btn-primary">
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                  <Button size="sm" variant="secondary" className="w-full btn-secondary">
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Share
+                  </Button>
+                  <Button size="sm" variant="secondary" className="w-full btn-secondary">
+                    <RotateCcw className="h-4 w-4 mr-2" />
+                    Fix Again
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         ))}

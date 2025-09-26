@@ -159,7 +159,7 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
           placeholder="Describe changes you'd like..."
-          className="min-h-[70px] resize-none text-sm"
+          className="min-h-[85px] resize-none text-sm"
         />
       </div>
 

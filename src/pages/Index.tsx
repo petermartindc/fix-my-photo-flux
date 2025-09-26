@@ -80,13 +80,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-16">
       <Header />
       
       <div className="container mx-auto px-6 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-screen">
           {/* Left Column - Upload Widget */}
-          <div className="lg:col-span-3 left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 left-6 w-[calc(25%-1.5rem)] overflow-y-auto">
+          <div className="lg:col-span-3 left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 left-6 w-[calc(25%-2.375rem)] overflow-y-auto">
             <UploadWidget 
               onFileSelect={handleFileSelect}
               isProcessing={!!processingPhoto}

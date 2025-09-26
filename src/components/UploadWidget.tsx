@@ -115,11 +115,13 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
 
         {preview ? (
           <div className="relative">
-            <img
-              src={preview}
-              alt="Preview"
-              className="w-full h-32 object-cover rounded-lg mb-3"
-            />
+            <div className="w-full h-32 bg-muted rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+              <img
+                src={preview}
+                alt="Preview"
+                className="max-w-full max-h-full object-contain rounded-lg"
+              />
+            </div>
             <Button
               variant="secondary"
               size="sm"
@@ -157,7 +159,7 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
           placeholder="Describe changes you'd like..."
-          className="min-h-[60px] resize-none text-sm"
+          className="min-h-[70px] resize-none text-sm"
         />
       </div>
 
@@ -167,7 +169,12 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
         disabled={!selectedFile || isProcessing}
         className="w-full btn-primary"
       >
-        {isProcessing ? "Processing..." : "Fix My Photo"}
+        {isProcessing ? "Processing..." : (
+          <div className="flex items-center justify-center space-x-2">
+            <span>Fix My Photo</span>
+            <span className="bg-primary-foreground/20 text-primary-foreground text-xs px-1.5 py-0.5 rounded-full font-medium">1</span>
+          </div>
+        )}
       </Button>
     </div>
   );

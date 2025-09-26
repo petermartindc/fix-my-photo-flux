@@ -35,7 +35,6 @@ const samplePhotos: PhotoResult[] = [
     id: "1",
     originalUrl: samplePhoto1,
     fixedUrl: samplePhoto1,
-    instructions: "Restore Family Photo Portrait from 1940s",
     timestamp: "2 minutes ago",
     dimensions: "800x600",
     fileSize: "2.1 MB",
@@ -46,7 +45,6 @@ const samplePhotos: PhotoResult[] = [
     originalUrl: samplePhoto2,
     fixedUrl: samplePhoto2,
     videoUrl: samplePhoto2,
-    instructions: "Colorize and Repair Wedding Photo",
     timestamp: "15 minutes ago",
     dimensions: "800x600",
     fileSize: "1.8 MB",
@@ -56,7 +54,6 @@ const samplePhotos: PhotoResult[] = [
     id: "3",
     originalUrl: samplePhoto3,
     fixedUrl: samplePhoto3,
-    instructions: "Remove Spots and Enhance Clarity",
     timestamp: "1 hour ago",
     dimensions: "800x600",
     fileSize: "2.3 MB",
@@ -66,7 +63,6 @@ const samplePhotos: PhotoResult[] = [
     id: "4",
     originalUrl: samplePhoto4,
     fixedUrl: samplePhoto4,
-    instructions: "Restore Children's School Photo",
     timestamp: "2 hours ago",
     dimensions: "800x600",
     fileSize: "1.9 MB",
@@ -77,7 +73,6 @@ const samplePhotos: PhotoResult[] = [
     originalUrl: samplePhoto5,
     fixedUrl: samplePhoto5,
     videoUrl: samplePhoto5,
-    instructions: "Enhance Military Portrait",
     timestamp: "3 hours ago",
     dimensions: "800x600",
     fileSize: "2.0 MB",
@@ -87,7 +82,6 @@ const samplePhotos: PhotoResult[] = [
     id: "6",
     originalUrl: samplePhoto6,
     fixedUrl: samplePhoto6,
-    instructions: "Restore Graduation Photo",
     timestamp: "1 day ago",
     dimensions: "800x600",
     fileSize: "1.7 MB",
@@ -97,7 +91,6 @@ const samplePhotos: PhotoResult[] = [
     id: "7",
     originalUrl: samplePhoto7,
     fixedUrl: samplePhoto7,
-    instructions: "Fix Family Reunion Photo",
     timestamp: "2 days ago",
     dimensions: "800x600",
     fileSize: "2.4 MB",
@@ -108,7 +101,6 @@ const samplePhotos: PhotoResult[] = [
     originalUrl: samplePhoto8,
     fixedUrl: samplePhoto8,
     videoUrl: samplePhoto8,
-    instructions: "Colorize Vintage Couple Portrait",
     timestamp: "3 days ago",
     dimensions: "800x600",
     fileSize: "2.2 MB",
@@ -203,9 +195,6 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                     </span>
                   </div>
                   
-                  {photo.instructions && (
-                    <p className="text-sm font-medium">{photo.instructions}</p>
-                  )}
                   
                   <div className="space-y-1 text-xs text-muted-foreground">
                     <p>{photo.dimensions}</p>
@@ -249,7 +238,7 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                         onClick={() => setCurrentView(photo.id, 'video')}
                         className={`flex-1 p-2 rounded-lg text-xs transition-all ${
                           getCurrentView(photo.id) === 'video' 
-                            ? 'bg-primary text-primary-foreground' 
+                            ? 'bg-blue-500 text-white' 
                             : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
                         }`}
                       >
@@ -262,13 +251,15 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                         Video
                       </button>
                     ) : (
-                      <button className="flex-1 p-2 rounded-lg text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg relative">
-                        <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center">
-                          <Video className="h-4 w-4 text-white" />
+                      <button className="flex-1 p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all transform hover:scale-105 font-medium">
+                        <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
+                          <div className="w-6 h-6 rounded-full bg-white/30 flex items-center justify-center">
+                            <div className="w-3 h-3 rounded-full bg-white animate-pulse" />
+                          </div>
                         </div>
                         <div className="flex items-center justify-center space-x-1">
-                          <span>Make Video</span>
-                          <span className="bg-white/20 px-1 rounded text-xs font-bold">New</span>
+                          <span>Video</span>
+                          <span className="bg-white/30 text-white text-[10px] px-1 rounded font-bold">5</span>
                         </div>
                       </button>
                     )}
@@ -300,12 +291,12 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setFullscreenPhoto(null)}>
-          <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setFullscreenPhoto(null)}>
+          <div className="relative max-w-[98vw] max-h-[98vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <img
               src={getCurrentImageUrl(fullscreenPhoto)}
               alt="Fullscreen photo"
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="max-w-full max-h-full object-contain"
             />
             <button
               onClick={() => setFullscreenPhoto(null)}

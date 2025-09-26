@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Coins, User } from "lucide-react";
+import { ChevronDown, Coins, User, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -27,6 +27,11 @@ const Header = () => {
             <Coins className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium">183 Credits</span>
           </div>
+
+          {/* Get more credits button */}
+          <Button size="sm" variant="outline" className="h-8 w-8 p-0">
+            <Plus className="h-4 w-4" />
+          </Button>
 
           {/* User dropdown */}
           <DropdownMenu>

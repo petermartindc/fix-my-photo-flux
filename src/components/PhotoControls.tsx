@@ -21,6 +21,7 @@ interface PhotoResult {
   timestamp: string;
   dimensions: string;
   fileSize: string;
+  model: string;
 }
 
 const samplePhotos: PhotoResult[] = [
@@ -28,76 +29,84 @@ const samplePhotos: PhotoResult[] = [
     id: "1",
     originalUrl: samplePhoto1,
     fixedUrl: samplePhoto1,
-    instructions: "Restore family portrait from 1940s",
+    instructions: "Restore Family Photo Portrait from 1940s",
     timestamp: "2 minutes ago",
     dimensions: "800x600",
-    fileSize: "2.1 MB"
+    fileSize: "2.1 MB",
+    model: "Context Pro"
   },
   {
     id: "2",
     originalUrl: samplePhoto2,
     fixedUrl: samplePhoto2,
-    videoUrl: samplePhoto2, // Some have videos
-    instructions: "Colorize and repair wedding photo",
+    videoUrl: samplePhoto2,
+    instructions: "Colorize and Repair Wedding Photo",
     timestamp: "15 minutes ago",
     dimensions: "800x600",
-    fileSize: "1.8 MB"
+    fileSize: "1.8 MB",
+    model: "Context Pro"
   },
   {
     id: "3",
     originalUrl: samplePhoto3,
     fixedUrl: samplePhoto3,
-    instructions: "Remove spots and enhance clarity",
+    instructions: "Remove Spots and Enhance Clarity",
     timestamp: "1 hour ago",
     dimensions: "800x600",
-    fileSize: "2.3 MB"
+    fileSize: "2.3 MB",
+    model: "Context Pro"
   },
   {
     id: "4",
     originalUrl: samplePhoto4,
     fixedUrl: samplePhoto4,
-    instructions: "Restore children's school photo",
+    instructions: "Restore Children's School Photo",
     timestamp: "2 hours ago",
     dimensions: "800x600",
-    fileSize: "1.9 MB"
+    fileSize: "1.9 MB",
+    model: "Context Pro"
   },
   {
     id: "5",
     originalUrl: samplePhoto5,
     fixedUrl: samplePhoto5,
-    videoUrl: samplePhoto5, // Some have videos
-    instructions: "Enhance military portrait",
+    videoUrl: samplePhoto5,
+    instructions: "Enhance Military Portrait",
     timestamp: "3 hours ago",
     dimensions: "800x600",
-    fileSize: "2.0 MB"
+    fileSize: "2.0 MB",
+    model: "Context Pro"
   },
   {
     id: "6",
     originalUrl: samplePhoto6,
     fixedUrl: samplePhoto6,
-    instructions: "Restore graduation photo",
+    instructions: "Restore Graduation Photo",
     timestamp: "1 day ago",
     dimensions: "800x600",
-    fileSize: "1.7 MB"
+    fileSize: "1.7 MB",
+    model: "Context Pro"
   },
   {
     id: "7",
     originalUrl: samplePhoto7,
     fixedUrl: samplePhoto7,
-    instructions: "Fix family reunion photo",
+    instructions: "Fix Family Reunion Photo",
     timestamp: "2 days ago",
     dimensions: "800x600",
-    fileSize: "2.4 MB"
+    fileSize: "2.4 MB",
+    model: "Context Pro"
   },
   {
     id: "8",
     originalUrl: samplePhoto8,
     fixedUrl: samplePhoto8,
-    videoUrl: samplePhoto8, // Some have videos
-    instructions: "Colorize vintage couple portrait",
+    videoUrl: samplePhoto8,
+    instructions: "Colorize Vintage Couple Portrait",
     timestamp: "3 days ago",
     dimensions: "800x600",
-    fileSize: "2.2 MB"
+    fileSize: "2.2 MB",
+    model: "Context Pro"
   }
 ];
 
@@ -107,12 +116,17 @@ const PhotoControls = () => {
   return (
     <div className="space-y-8">
       {samplePhotos.map((photo) => (
-        <div key={photo.id} className="photo-card p-4 min-h-[240px] flex flex-col justify-between">
+        <div key={photo.id} className="photo-card p-4 flex flex-col justify-between" style={{ minHeight: 'calc(75vh / 8)' }}>
           {/* Photo info */}
           <div className="space-y-3">
-            <p className="text-sm text-muted-foreground">{photo.timestamp}</p>
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-muted-foreground">{photo.timestamp}</p>
+              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                {photo.model}
+              </span>
+            </div>
             {photo.instructions && (
-              <p className="text-sm">{photo.instructions}</p>
+              <p className="text-sm font-medium">{photo.instructions}</p>
             )}
             
             <div className="space-y-1 text-xs text-muted-foreground">

@@ -13,6 +13,7 @@ interface PhotoResult {
   timestamp: string;
   dimensions: string;
   fileSize: string;
+  model: string;
 }
 
 const Index = () => {
@@ -30,7 +31,8 @@ const Index = () => {
       instructions,
       timestamp: "Processing...",
       dimensions: "Processing...",
-      fileSize: `${(file.size / (1024 * 1024)).toFixed(1)} MB`
+      fileSize: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
+      model: "Context Pro"
     };
 
     setProcessingPhoto(newPhoto);
@@ -82,35 +84,36 @@ const Index = () => {
             />
           </div>
 
-          {/* Center Column - Photo Feed */}
-          <div className="lg:col-span-5">
+          {/* Center and Right Columns - Tethered Container */}
+          <div className="lg:col-span-9">
             <div className="space-y-6">
-              <div>
-                <h2 className="text-xl font-bold mb-1">Recent Fixes</h2>
-                <p className="text-muted-foreground text-sm">
-                  Your photo restoration history
-                </p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold mb-1">Recent Fixes</h2>
+                  <p className="text-muted-foreground text-sm">
+                    Your photo restoration history
+                  </p>
+                </div>
+                <div className="bg-secondary px-3 py-1 rounded-full">
+                  <span className="text-sm font-medium">183 Total Fixes</span>
+                </div>
               </div>
               
-              <PhotoFeed
-                onPhotoSelect={handlePhotoSelect}
-                processingPhoto={processingPhoto}
-                processingProgress={processingProgress}
-              />
-            </div>
-          </div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Center Column - Photo Feed */}
+                <div className="lg:col-span-8">
+                  <PhotoFeed
+                    onPhotoSelect={handlePhotoSelect}
+                    processingPhoto={processingPhoto}
+                    processingProgress={processingProgress}
+                  />
+                </div>
 
-          {/* Right Column - Details & Controls */}
-          <div className="lg:col-span-4">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-xl font-bold mb-1">Details & Actions</h2>
-                <p className="text-muted-foreground text-sm">
-                  Controls for each photo
-                </p>
+                {/* Right Column - Controls */}
+                <div className="lg:col-span-4">
+                  <PhotoControls />
+                </div>
               </div>
-              
-              <PhotoControls />
             </div>
           </div>
         </div>

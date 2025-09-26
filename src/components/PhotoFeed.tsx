@@ -205,10 +205,10 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                 
                 {/* View toggles */}
                 <div className="space-y-4">
-                  <div className="flex space-x-2">
+                  <div className="grid grid-cols-3 gap-2">
                     <button 
                       onClick={() => setCurrentView(photo.id, 'original')}
-                      className={`flex-1 p-2 rounded-lg text-xs transition-all ${
+                      className={`p-2 rounded-lg text-xs transition-all ${
                         getCurrentView(photo.id) === 'original' 
                           ? 'bg-primary text-primary-foreground' 
                           : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
@@ -222,7 +222,7 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                     
                     <button 
                       onClick={() => setCurrentView(photo.id, 'enhanced')}
-                      className={`flex-1 p-2 rounded-lg text-xs transition-all ${
+                      className={`p-2 rounded-lg text-xs transition-all ${
                         getCurrentView(photo.id) === 'enhanced' 
                           ? 'bg-primary text-primary-foreground' 
                           : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
@@ -237,7 +237,7 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                     {photo.videoUrl ? (
                       <button 
                         onClick={() => setCurrentView(photo.id, 'video')}
-                        className={`flex-1 p-2 rounded-lg text-xs transition-all ${
+                        className={`p-2 rounded-lg text-xs transition-all ${
                           getCurrentView(photo.id) === 'video' 
                             ? 'bg-blue-500 text-white' 
                             : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
@@ -252,7 +252,7 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                         Video
                       </button>
                     ) : (
-                      <div className="flex-1 relative group">
+                      <div className="relative group">
                         <button 
                           className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium"
                           title="Turn the restored photo into a 5-second animated video"
@@ -260,7 +260,7 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                           <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
                             <span className="text-white font-bold text-lg">▶</span>
                           </div>
-                          Make Video
+                          Animate!
                         </button>
                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
                           Turn the restored photo into a 5-second animated video

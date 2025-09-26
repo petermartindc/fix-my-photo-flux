@@ -74,9 +74,9 @@ const Index = () => {
       <Header />
       
       <div className="container mx-auto px-6 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-screen">
           {/* Left Column - Upload Widget */}
-          <div className="lg:col-span-3 left-column-bg rounded-xl p-6 sticky top-[4.5rem] self-start">
+          <div className="lg:col-span-3 left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 left-6 w-[calc(25%-1.5rem)] overflow-y-auto">
             <UploadWidget 
               onFileSelect={handleFileSelect}
               isProcessing={!!processingPhoto}
@@ -84,25 +84,25 @@ const Index = () => {
           </div>
 
           {/* Center and Right Columns - Tethered Container */}
-          <div className="lg:col-span-9">
+          <div className="lg:col-span-9 lg:col-start-4 pl-0">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold mb-1">Recent Fixes</h2>
-                  <p className="text-muted-foreground text-sm">
-                    Your photo restoration history
-                  </p>
-                </div>
-                <div className="bg-secondary px-3 py-1 rounded-full">
-                  <span className="text-sm font-medium">183 Total Fixes</span>
+                  <h2 className="text-xl font-bold">Recent Fixes</h2>
                 </div>
               </div>
               
-              <PhotoFeed
-                onPhotoSelect={handlePhotoSelect}
-                processingPhoto={processingPhoto}
-                processingProgress={processingProgress}
-              />
+              <div className="relative">
+                <div className="absolute top-0 right-0 bg-secondary px-3 py-1 rounded-full z-10">
+                  <span className="text-sm font-medium">183 Total Fixes</span>
+                </div>
+              
+                <PhotoFeed
+                  onPhotoSelect={handlePhotoSelect}
+                  processingPhoto={processingPhoto}
+                  processingProgress={processingProgress}
+                />
+              </div>
             </div>
           </div>
         </div>

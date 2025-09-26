@@ -83,9 +83,10 @@ const Index = () => {
     <div className="min-h-screen bg-background pt-16">
       <Header />
       
-      <div className="container mx-auto px-6 py-6 max-w-[1280px]">
+      <div className="max-w-[1280px] mx-auto px-6 py-6 relative">
         {/* Left Column - Upload Widget */}
-        <div className="hidden sm:block left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 left-6 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] overflow-y-auto z-40">
+        <div className="hidden sm:block left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] overflow-y-auto z-40" 
+             style={{left: 'max(24px, calc(50vw - 640px + 24px))'}}>
           <UploadWidget 
             onFileSelect={handleFileSelect}
             isProcessing={!!processingPhoto}
@@ -101,12 +102,14 @@ const Index = () => {
               </div>
             </div>
             
-            <PhotoFeed
-              onPhotoSelect={handlePhotoSelect}
-              onFixAgain={handleFixAgain}
-              processingPhoto={processingPhoto}
-              processingProgress={processingProgress}
-            />
+            <div className="text-left">
+              <PhotoFeed
+                onPhotoSelect={handlePhotoSelect}
+                onFixAgain={handleFixAgain}
+                processingPhoto={processingPhoto}
+                processingProgress={processingProgress}
+              />
+            </div>
           </div>
         </div>
 

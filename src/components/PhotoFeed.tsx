@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Download, Share2, RotateCcw, Play, Video, X } from "lucide-react";
+import { Download, Share2, RotateCcw, Play, Video, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Import sample photos
@@ -208,6 +208,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
   const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'fixed' | 'video'>>({});
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
+  const [animateMode, setAnimateMode] = useState<string | null>(null);
   
   const getCurrentView = (photoId: string) => {
     return currentViews[photoId] || 'fixed';
@@ -270,6 +271,14 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
     }
   };
 
+  const handleAnimateClick = (photo: PhotoResult) => {
+    setAnimateMode(photo.id);
+  };
+
+  const handleBackFromAnimate = () => {
+    setAnimateMode(null);
+  };
+
   return (
     <div className="space-y-6">
       {/* Processing card */}
@@ -311,139 +320,241 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
         {/* Show completed photos first, then sample photos */}
         {[...completedPhotos, ...samplePhotos].map((photo) => (
           <div key={photo.id} className="photo-card rounded-xl overflow-hidden group">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">
-              {/* Left side - Image */}
-              <div className="lg:col-span-8">
-                <div 
-                  className="h-[400px] bg-muted overflow-hidden cursor-pointer relative flex items-center justify-center"
-                  onClick={() => setFullscreenPhoto(photo)}
-                >
-                  <img
-                    src={getCurrentImageUrl(photo)}
-                    alt="Restored photo"
-                    className="w-full h-full object-contain transition-all duration-300"
-                  />
-                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300" />
-                </div>
-              </div>
-              
-              {/* Right side - Controls and info */}
-              <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-between">
-                {/* Photo info */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm text-muted-foreground">{photo.timestamp}</p>
-                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                      {photo.model}
-                    </span>
-                  </div>
-                  
-                  
-                  <div className="space-y-1 text-xs text-muted-foreground">
-                    <p>{photo.dimensions}</p>
-                    <p>{photo.fileSize}</p>
-                  </div>
-                </div>
-                
-                {/* View toggles */}
-                <div className="space-y-4">
-                  <div className="grid grid-cols-3 gap-2">
-                    <button 
-                      onClick={() => setCurrentView(photo.id, 'original')}
-                      className={`p-2 rounded-lg text-xs transition-all ${
-                        getCurrentView(photo.id) === 'original' 
-                          ? 'bg-primary text-primary-foreground' 
-                          : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
-                      }`}
-                    >
-                       <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden flex items-center justify-center">
-                         <img src={photo.originalUrl} alt="Original" className="w-full h-full object-contain" />
-                       </div>
-                      Original
-                    </button>
-                    
-                    <button 
-                      onClick={() => setCurrentView(photo.id, 'fixed')}
-                      className={`p-2 rounded-lg text-xs transition-all ${
-                        getCurrentView(photo.id) === 'fixed' 
-                          ? 'bg-primary text-primary-foreground' 
-                          : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
-                      }`}
-                    >
-                       <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden flex items-center justify-center">
-                         <img src={photo.fixedUrl} alt="Fixed" className="w-full h-full object-contain" />
-                       </div>
-                      Fixed
-                    </button>
-                    
-                    {photo.videoUrl ? (
-                      <button 
-                        onClick={() => setCurrentView(photo.id, 'video')}
-                        className={`p-2 rounded-lg text-xs transition-all ${
-                          getCurrentView(photo.id) === 'video' 
-                            ? 'bg-blue-500 text-white' 
-                            : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
-                        }`}
-                      >
-                         <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden relative flex items-center justify-center">
-                           <img src={photo.fixedUrl} alt="Video" className="w-full h-full object-contain" />
-                           <div className="absolute inset-0 flex items-center justify-center">
-                            <Play className="h-3 w-3 text-white" />
-                          </div>
+            {animateMode === photo.id ? (
+              // Animate Mode View
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">
+                {/* Left side - Animate Promotional Content */}
+                <div className="lg:col-span-8 p-8 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/50 dark:to-amber-950/50 relative">
+                  {/* Back button */}
+                  <button
+                    onClick={handleBackFromAnimate}
+                    className="absolute top-4 left-4 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    Back
+                  </button>
+
+                  <div className="mt-12 space-y-6">
+                    {/* Header */}
+                    <div>
+                      <h2 className="text-2xl font-bold text-foreground mb-2">
+                        Bring Your Photo to Life
+                      </h2>
+                      <p className="text-muted-foreground">
+                        Transform your static image into a stunning 5-second animated video
+                      </p>
+                    </div>
+
+                    {/* Content Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                      {/* Left: Thumbnail and Benefits */}
+                      <div className="space-y-6">
+                        <div className="w-32 h-24 bg-muted rounded-lg overflow-hidden">
+                          <img
+                            src={photo.fixedUrl}
+                            alt="Photo thumbnail"
+                            className="w-full h-full object-cover"
+                          />
                         </div>
-                        Video
-                      </button>
-                    ) : (
-                      <div className="relative">
-                        <button 
-                          className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium peer"
-                        >
-                          <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
-                            <span className="text-white font-bold text-lg">▶</span>
-                          </div>
-                          Animate!
-                        </button>
-                        <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 peer-hover:opacity-100 transition-opacity pointer-events-none z-10 w-40 text-center leading-relaxed">
-                          Create a 5-second animated video
+                        
+                        <div className="space-y-3">
+                          <h3 className="font-semibold text-foreground">AI-Powered Animation Features:</h3>
+                          <ul className="space-y-2 text-sm text-muted-foreground">
+                            <li className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                              Creates realistic motion and depth
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                              Perfect for sharing on social media
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                              High-quality 5-second video output
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                              Surprise friends and family
+                            </li>
+                          </ul>
                         </div>
                       </div>
-                    )}
-                  </div>
-                  
-                  {/* Action buttons */}
-                  <div className="space-y-2">
-                    <Button 
-                      size="sm" 
-                      className="w-full btn-primary"
-                      onClick={() => handleDownload(photo)}
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
-                    <div className="grid grid-cols-2 gap-2">
+
+                      {/* Right: Video Preview Placeholder */}
+                      <div className="space-y-4">
+                        <p className="text-sm font-medium text-muted-foreground">Preview Example:</p>
+                        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-border">
+                          <div className="text-center space-y-2">
+                            <Play className="h-8 w-8 mx-auto text-muted-foreground" />
+                            <p className="text-xs text-muted-foreground">Video Preview</p>
+                            <p className="text-xs text-muted-foreground">(Auto-playing example)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Call to Action */}
+                    <div className="pt-4">
                       <Button 
-                        size="sm" 
-                        variant="secondary" 
-                        className="btn-secondary"
-                        onClick={() => handleShare(photo)}
+                        size="lg" 
+                        className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-4 text-base shadow-lg hover:shadow-orange-500/25 transition-all"
                       >
-                        <Share2 className="h-4 w-4 mr-1" />
-                        Share
-                      </Button>
-                      <Button 
-                        size="sm" 
-                        variant="secondary" 
-                        className="btn-secondary"
-                        onClick={() => handleFixAgain(photo)}
-                      >
-                        <RotateCcw className="h-4 w-4 mr-1" />
-                        Fix Again
+                        <Video className="h-5 w-5 mr-2" />
+                        Make Video (5 credits)
                       </Button>
                     </div>
                   </div>
                 </div>
+                
+                {/* Right side - Original Controls (hidden in animate mode) */}
+                <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-center items-center">
+                  <div className="text-center space-y-4">
+                    <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
+                      <Video className="h-8 w-8 text-orange-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-2">Animation Mode</h3>
+                      <p className="text-sm text-muted-foreground">Create your animated video with AI</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              // Normal View
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">
+                {/* Left side - Image */}
+                <div className="lg:col-span-8">
+                  <div 
+                    className="h-[400px] bg-muted overflow-hidden cursor-pointer relative flex items-center justify-center"
+                    onClick={() => setFullscreenPhoto(photo)}
+                  >
+                    <img
+                      src={getCurrentImageUrl(photo)}
+                      alt="Restored photo"
+                      className="w-full h-full object-contain transition-all duration-300"
+                    />
+                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300" />
+                  </div>
+                </div>
+                
+                {/* Right side - Controls and info */}
+                <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-between">
+                  {/* Photo info */}
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm text-muted-foreground">{photo.timestamp}</p>
+                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                        {photo.model}
+                      </span>
+                    </div>
+                    
+                    <div className="space-y-1 text-xs text-muted-foreground">
+                      <p>{photo.dimensions}</p>
+                      <p>{photo.fileSize}</p>
+                    </div>
+                  </div>
+                  
+                  {/* View toggles */}
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-3 gap-2">
+                      <button 
+                        onClick={() => setCurrentView(photo.id, 'original')}
+                        className={`p-2 rounded-lg text-xs transition-all ${
+                          getCurrentView(photo.id) === 'original' 
+                            ? 'bg-primary text-primary-foreground' 
+                            : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
+                        }`}
+                      >
+                         <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden flex items-center justify-center">
+                           <img src={photo.originalUrl} alt="Original" className="w-full h-full object-contain" />
+                         </div>
+                        Original
+                      </button>
+                      
+                      <button 
+                        onClick={() => setCurrentView(photo.id, 'fixed')}
+                        className={`p-2 rounded-lg text-xs transition-all ${
+                          getCurrentView(photo.id) === 'fixed' 
+                            ? 'bg-primary text-primary-foreground' 
+                            : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
+                        }`}
+                      >
+                         <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden flex items-center justify-center">
+                           <img src={photo.fixedUrl} alt="Fixed" className="w-full h-full object-contain" />
+                         </div>
+                        Fixed
+                      </button>
+                      
+                      {photo.videoUrl ? (
+                        <button 
+                          onClick={() => setCurrentView(photo.id, 'video')}
+                          className={`p-2 rounded-lg text-xs transition-all ${
+                            getCurrentView(photo.id) === 'video' 
+                              ? 'bg-blue-500 text-white' 
+                              : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
+                          }`}
+                        >
+                           <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden relative flex items-center justify-center">
+                             <img src={photo.fixedUrl} alt="Video" className="w-full h-full object-contain" />
+                             <div className="absolute inset-0 flex items-center justify-center">
+                              <Play className="h-3 w-3 text-white" />
+                            </div>
+                          </div>
+                          Video
+                        </button>
+                      ) : (
+                        <div className="relative">
+                          <button 
+                            onClick={() => handleAnimateClick(photo)}
+                            className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium peer"
+                          >
+                            <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
+                              <span className="text-white font-bold text-lg">▶</span>
+                            </div>
+                            Animate!
+                          </button>
+                          <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 peer-hover:opacity-100 transition-opacity pointer-events-none z-10 w-40 text-center leading-relaxed">
+                            Create a 5-second animated video
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Action buttons */}
+                    <div className="space-y-2">
+                      <Button 
+                        size="sm" 
+                        className="w-full btn-primary"
+                        onClick={() => handleDownload(photo)}
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Download
+                      </Button>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Button 
+                          size="sm" 
+                          variant="secondary" 
+                          className="btn-secondary"
+                          onClick={() => handleShare(photo)}
+                        >
+                          <Share2 className="h-4 w-4 mr-1" />
+                          Share
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="secondary" 
+                          className="btn-secondary"
+                          onClick={() => handleFixAgain(photo)}
+                        >
+                          <RotateCcw className="h-4 w-4 mr-1" />
+                          Fix Again
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

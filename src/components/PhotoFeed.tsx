@@ -254,12 +254,11 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                     ) : (
                       <div className="flex-1 relative group">
                         <button 
-                          className="w-full p-4 rounded-lg bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-semibold text-sm"
+                          className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium"
                           title="Turn the restored photo into a 5-second animated video"
                         >
-                          <div className="flex items-center justify-center space-x-2">
-                            <span>Animate!</span>
-                            <span className="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded font-bold">5</span>
+                          <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
+                            <span className="text-white font-semibold text-xs">Make Video</span>
                           </div>
                         </button>
                         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">

@@ -122,8 +122,7 @@
   }
   
   .photo-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover), 0 0 20px hsl(var(--primary) / 0.1);
   }
   
   /* Left column background */
@@ -139,7 +138,7 @@
   
   .thumbnail-overlay:hover {
     border-color: hsl(var(--primary) / 0.6);
-    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 15px hsl(var(--primary) / 0.3);
   }
   
   /* Processing animation */
@@ -163,8 +162,7 @@
   }
   
   .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px -4px hsl(var(--primary) / 0.5);
+    box-shadow: 0 6px 20px -4px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.2);
   }
   
   .btn-secondary {
@@ -175,7 +173,6 @@
   
   .btn-secondary:hover {
     background: hsl(var(--secondary-hover));
-    transform: translateY(-1px);
   }
 
   /* Utility classes */

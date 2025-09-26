@@ -75,34 +75,38 @@ const Index = () => {
       
       <div className="container mx-auto px-6 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Left Column - Upload Widget */}
-          <div className="lg:col-span-3 left-column-bg rounded-xl p-6">
-            <UploadWidget 
-              onFileSelect={handleFileSelect}
-              isProcessing={!!processingPhoto}
-            />
+          {/* Left Column - Upload Widget (Fixed) */}
+          <div className="lg:col-span-3">
+            <div className="left-column-fixed left-column-bg rounded-xl p-6 w-[calc(25%-0.75rem)]">
+              <UploadWidget 
+                onFileSelect={handleFileSelect}
+                isProcessing={!!processingPhoto}
+              />
+            </div>
           </div>
 
-          {/* Center and Right Columns - Tethered Container */}
-          <div className="lg:col-span-9">
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-xl font-bold mb-1">Recent Fixes</h2>
-                  <p className="text-muted-foreground text-sm">
-                    Your photo restoration history
-                  </p>
+          {/* Center and Right Columns - Main Content */}
+          <div className="lg:col-span-9 lg:ml-[calc(25%+0.75rem)]">
+            <div className="main-content-area p-6">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-xl font-bold mb-1">Recent Fixes</h2>
+                    <p className="text-muted-foreground text-sm">
+                      Your photo restoration history
+                    </p>
+                  </div>
+                  <div className="bg-secondary px-3 py-1 rounded-full">
+                    <span className="text-sm font-medium">183 Total Fixes</span>
+                  </div>
                 </div>
-                <div className="bg-secondary px-3 py-1 rounded-full">
-                  <span className="text-sm font-medium">183 Total Fixes</span>
-                </div>
+                
+                <PhotoFeed
+                  onPhotoSelect={handlePhotoSelect}
+                  processingPhoto={processingPhoto}
+                  processingProgress={processingProgress}
+                />
               </div>
-              
-              <PhotoFeed
-                onPhotoSelect={handlePhotoSelect}
-                processingPhoto={processingPhoto}
-                processingProgress={processingProgress}
-              />
             </div>
           </div>
         </div>

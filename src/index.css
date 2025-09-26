@@ -59,6 +59,13 @@
     
     /* Left column background */
     --left-column-bg: 220 13% 9%;
+    
+    /* Main content area */
+    --main-content-bg: 220 13% 13%;
+    --main-content-secondary: 220 13% 15%;
+    
+    /* Header glass effect */
+    --header-glass: 220 13% 12% / 0.8;
 
     /* Progress and loading */
     --progress-bg: 220 13% 16%;
@@ -71,6 +78,8 @@
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(217 91% 55%));
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card-hover)));
     --gradient-upload: linear-gradient(145deg, hsl(var(--upload-bg)), hsl(var(--upload-hover)));
+    --gradient-main-content: linear-gradient(135deg, hsl(var(--main-content-bg)), hsl(var(--main-content-secondary)));
+    --gradient-header: linear-gradient(180deg, hsl(var(--header-glass)), hsl(var(--header-glass)));
     
     /* Shadows */
     --shadow-card: 0 4px 20px -4px hsl(220 13% 5% / 0.3);
@@ -129,6 +138,32 @@
   /* Left column background */
   .left-column-bg {
     background-color: hsl(var(--left-column-bg));
+  }
+  
+  /* Fixed left column */
+  .left-column-fixed {
+    position: fixed;
+    top: 80px;
+    left: 24px;
+    height: calc(100vh - 104px);
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  /* Main content area */
+  .main-content-area {
+    background: var(--gradient-main-content);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-card);
+  }
+  
+  /* Header glass effect */
+  .header-glass {
+    background: var(--gradient-header);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsl(var(--border) / 0.3);
+    box-shadow: 0 4px 20px -4px hsl(220 13% 5% / 0.4);
   }
   
   /* Thumbnail overlays */

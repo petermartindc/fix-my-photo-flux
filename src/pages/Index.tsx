@@ -101,7 +101,12 @@ const Index = () => {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold">Recent Fixes <span className="text-sm font-normal text-muted-foreground">(183 Total Fixes)</span></h2>
+                <h2 className="text-xl font-bold flex items-center gap-3">
+                  Recent Fixes 
+                  <span className="bg-secondary text-secondary-foreground text-sm font-normal px-3 py-1 rounded-full">
+                    183
+                  </span>
+                </h2>
                 </div>
               </div>
               

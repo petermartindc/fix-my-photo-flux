@@ -133,9 +133,6 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
             >
               <X className="h-4 w-4" />
             </Button>
-            <p className="text-sm text-muted-foreground">
-              {selectedFile?.name}
-            </p>
           </div>
         ) : (
           <div className="space-y-2">

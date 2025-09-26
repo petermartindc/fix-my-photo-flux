@@ -26,6 +26,7 @@ interface PhotoResult {
 
 interface PhotoFeedProps {
   onPhotoSelect: (photo: PhotoResult) => void;
+  onFixAgain?: (photo: PhotoResult) => void;
   processingPhoto?: PhotoResult | null;
   processingProgress?: number;
 }
@@ -202,7 +203,7 @@ const samplePhotos: PhotoResult[] = [
   }
 ];
 
-const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: PhotoFeedProps) => {
+const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress }: PhotoFeedProps) => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
   const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'enhanced' | 'video'>>({});
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
@@ -229,6 +230,43 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
 
   const handlePhotoClick = (photo: PhotoResult) => {
     onPhotoSelect(photo);
+  };
+
+  const handleDownload = (photo: PhotoResult) => {
+    const link = document.createElement('a');
+    link.href = getCurrentImageUrl(photo);
+    link.download = `fixed-photo-${photo.id}.jpg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleShare = async (photo: PhotoResult) => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Fixed Photo',
+          text: 'Check out this restored photo!',
+          url: getCurrentImageUrl(photo)
+        });
+      } catch (error) {
+        console.log('Share cancelled');
+      }
+    } else {
+      // Fallback: copy URL to clipboard
+      try {
+        await navigator.clipboard.writeText(getCurrentImageUrl(photo));
+        alert('Image URL copied to clipboard!');
+      } catch (error) {
+        console.error('Failed to copy URL');
+      }
+    }
+  };
+
+  const handleFixAgain = (photo: PhotoResult) => {
+    if (onFixAgain) {
+      onFixAgain(photo);
+    }
   };
 
   return (
@@ -262,12 +300,12 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
       {/* Stacked photo results with integrated controls */}
       <div className="space-y-8">
         {samplePhotos.map((photo) => (
-          <div key={photo.id} className="photo-card rounded-xl overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          <div key={photo.id} className="photo-card rounded-xl overflow-hidden group">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">
               {/* Left side - Image */}
               <div className="lg:col-span-8">
                 <div 
-                  className="aspect-[4/3] overflow-hidden cursor-pointer group relative"
+                  className="aspect-[4/3] overflow-hidden cursor-pointer relative"
                   onClick={() => setFullscreenPhoto(photo)}
                 >
                   <img
@@ -275,7 +313,7 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                     alt="Restored photo"
                     className="w-full h-full object-cover transition-all duration-300"
                   />
-                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20" />
+                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300" />
                 </div>
               </div>
               
@@ -365,16 +403,30 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                   
                   {/* Action buttons */}
                   <div className="space-y-2">
-                    <Button size="sm" className="w-full btn-primary">
+                    <Button 
+                      size="sm" 
+                      className="w-full btn-primary"
+                      onClick={() => handleDownload(photo)}
+                    >
                       <Download className="h-4 w-4 mr-2" />
                       Download
                     </Button>
                     <div className="grid grid-cols-2 gap-2">
-                      <Button size="sm" variant="secondary" className="btn-secondary">
+                      <Button 
+                        size="sm" 
+                        variant="secondary" 
+                        className="btn-secondary"
+                        onClick={() => handleShare(photo)}
+                      >
                         <Share2 className="h-4 w-4 mr-1" />
                         Share
                       </Button>
-                      <Button size="sm" variant="secondary" className="btn-secondary">
+                      <Button 
+                        size="sm" 
+                        variant="secondary" 
+                        className="btn-secondary"
+                        onClick={() => handleFixAgain(photo)}
+                      >
                         <RotateCcw className="h-4 w-4 mr-1" />
                         Fix Again
                       </Button>

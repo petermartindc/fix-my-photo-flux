@@ -65,8 +65,18 @@ const Index = () => {
     setCurrentView('fixed');
   };
 
-  const handleViewChange = (view: 'original' | 'fixed' | 'video') => {
-    setCurrentView(view);
+  const handleFixAgain = async (photo: PhotoResult) => {
+    try {
+      // Convert the enhanced image URL to a File object
+      const response = await fetch(photo.fixedUrl);
+      const blob = await response.blob();
+      const file = new File([blob], `enhanced-photo-${photo.id}.jpg`, { type: 'image/jpeg' });
+      
+      // Trigger the file selection with the enhanced image
+      handleFileSelect(file, photo.instructions);
+    } catch (error) {
+      console.error('Failed to load enhanced photo for fixing again:', error);
+    }
   };
 
   return (
@@ -92,11 +102,12 @@ const Index = () => {
                 </div>
               </div>
               
-              <PhotoFeed
-                onPhotoSelect={handlePhotoSelect}
-                processingPhoto={processingPhoto}
-                processingProgress={processingProgress}
-              />
+                <PhotoFeed
+                  onPhotoSelect={handlePhotoSelect}
+                  onFixAgain={handleFixAgain}
+                  processingPhoto={processingPhoto}
+                  processingProgress={processingProgress}
+                />
             </div>
           </div>
         </div>

@@ -315,13 +315,13 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
               {/* Left side - Image */}
               <div className="lg:col-span-8">
                 <div 
-                  className="aspect-[4/3] overflow-hidden cursor-pointer relative"
+                  className="min-h-[300px] max-h-[500px] bg-muted overflow-hidden cursor-pointer relative flex items-center justify-center"
                   onClick={() => setFullscreenPhoto(photo)}
                 >
                   <img
                     src={getCurrentImageUrl(photo)}
                     alt="Restored photo"
-                    className="w-full h-full object-cover transition-all duration-300"
+                    className="max-w-full max-h-full object-contain transition-all duration-300"
                   />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300" />
                 </div>
@@ -356,8 +356,8 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                           : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
                       }`}
                     >
-                      <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden">
-                        <img src={photo.originalUrl} alt="Original" className="w-full h-full object-cover" />
+                      <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden flex items-center justify-center">
+                        <img src={photo.originalUrl} alt="Original" className="max-w-full max-h-full object-contain" />
                       </div>
                       Original
                     </button>
@@ -370,8 +370,8 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                           : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
                       }`}
                     >
-                      <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden">
-                        <img src={photo.fixedUrl} alt="Fixed" className="w-full h-full object-cover" />
+                      <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden flex items-center justify-center">
+                        <img src={photo.fixedUrl} alt="Fixed" className="max-w-full max-h-full object-contain" />
                       </div>
                       Fixed
                     </button>
@@ -385,8 +385,8 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                             : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
                         }`}
                       >
-                        <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden relative">
-                          <img src={photo.fixedUrl} alt="Video" className="w-full h-full object-cover" />
+                        <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden relative flex items-center justify-center">
+                          <img src={photo.fixedUrl} alt="Video" className="max-w-full max-h-full object-contain" />
                           <div className="absolute inset-0 flex items-center justify-center">
                             <Play className="h-3 w-3 text-white" />
                           </div>
@@ -450,9 +450,9 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 p-[45px]" onClick={() => setFullscreenPhoto(null)}>
-          <div className="relative w-full h-full bg-background-secondary/95 backdrop-blur-sm rounded-3xl border border-border/50 shadow-2xl overflow-hidden">
-            <div className="absolute inset-0 p-[30px] flex items-center justify-center">
+        <div className="fixed inset-0 bg-white/40 backdrop-blur-md flex items-center justify-center z-50 p-[60px]" onClick={() => setFullscreenPhoto(null)}>
+          <div className="relative w-full h-full bg-background-secondary/95 backdrop-blur-sm rounded-3xl border border-border/50 shadow-2xl overflow-hidden flex items-center justify-center">
+            <div className="p-[30px] w-full h-full flex items-center justify-center">
               <img
                 src={getCurrentImageUrl(fullscreenPhoto)}
                 alt="Fullscreen photo"

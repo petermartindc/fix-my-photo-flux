@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import UploadWidget from "@/components/UploadWidget";
 import PhotoFeed from "@/components/PhotoFeed";
-import DetailPanel from "@/components/DetailPanel";
+import PhotoControls from "@/components/PhotoControls";
 
 interface PhotoResult {
   id: string;
@@ -83,12 +83,12 @@ const Index = () => {
           </div>
 
           {/* Center Column - Photo Feed */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-5">
             <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold mb-2">Recent Fixes</h2>
-                <p className="text-muted-foreground">
-                  Browse your photo restoration history
+                <h2 className="text-xl font-bold mb-1">Recent Fixes</h2>
+                <p className="text-muted-foreground text-sm">
+                  Your photo restoration history
                 </p>
               </div>
               
@@ -100,13 +100,18 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Right Column - Detail Panel */}
-          <div className="lg:col-span-3">
-            <DetailPanel
-              selectedPhoto={selectedPhoto}
-              onViewChange={handleViewChange}
-              currentView={currentView}
-            />
+          {/* Right Column - Details & Controls */}
+          <div className="lg:col-span-4">
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-xl font-bold mb-1">Details & Actions</h2>
+                <p className="text-muted-foreground text-sm">
+                  Controls for each photo
+                </p>
+              </div>
+              
+              <PhotoControls />
+            </div>
           </div>
         </div>
       </div>

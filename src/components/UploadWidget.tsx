@@ -97,7 +97,7 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
     <div className="sticky top-20 space-y-4">
       {/* Upload area */}
       <div
-        className={`upload-widget p-6 text-center cursor-pointer ${
+        className={`upload-widget p-4 text-center cursor-pointer min-h-[140px] ${
           isDragOver ? "drag-over" : ""
         }`}
         onDrop={handleDrop}
@@ -136,14 +136,14 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
             </p>
           </div>
         ) : (
-          <div className="space-y-3">
-            <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <ImageIcon className="h-6 w-6 text-primary" />
+          <div className="space-y-2">
+            <div className="mx-auto w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+              <ImageIcon className="h-4 w-4 text-primary" />
             </div>
             <div>
-              <p className="font-medium mb-1">Choose Photo</p>
-              <p className="text-sm text-muted-foreground">
-                Drag & drop, click, or Ctrl+V to paste
+              <p className="font-medium text-sm mb-1">Drop your photo here</p>
+              <p className="text-xs text-muted-foreground">
+                Drag & drop, click, or paste
               </p>
             </div>
           </div>
@@ -152,12 +152,12 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
 
       {/* Instructions */}
       <div className="space-y-2">
-        <label className="text-sm font-medium">Custom Instructions (Optional)</label>
+        <label className="text-sm font-medium">Custom Instructions</label>
         <Textarea
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
-          placeholder="Describe the changes you'd like to make to your photo..."
-          className="min-h-[80px] resize-none"
+          placeholder="Describe changes you'd like..."
+          className="min-h-[60px] resize-none text-sm"
         />
       </div>
 

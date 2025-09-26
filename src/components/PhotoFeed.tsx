@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Download, Share2, RotateCcw, Play, Video } from "lucide-react";
+import { Download, Share2, RotateCcw, Play, Video, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Import sample photos
@@ -118,6 +118,28 @@ const samplePhotos: PhotoResult[] = [
 
 const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: PhotoFeedProps) => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
+  const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'enhanced' | 'video'>>({});
+  const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
+  
+  const getCurrentView = (photoId: string) => {
+    return currentViews[photoId] || 'enhanced';
+  };
+  
+  const setCurrentView = (photoId: string, view: 'original' | 'enhanced' | 'video') => {
+    setCurrentViews(prev => ({ ...prev, [photoId]: view }));
+  };
+  
+  const getCurrentImageUrl = (photo: PhotoResult) => {
+    const view = getCurrentView(photo.id);
+    switch (view) {
+      case 'original':
+        return photo.originalUrl;
+      case 'video':
+        return photo.videoUrl || photo.fixedUrl;
+      default:
+        return photo.fixedUrl;
+    }
+  };
 
   const handlePhotoClick = (photo: PhotoResult) => {
     onPhotoSelect(photo);
@@ -158,11 +180,14 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
               {/* Left side - Image */}
               <div className="lg:col-span-8">
-                <div className="aspect-[4/3] overflow-hidden">
+                <div 
+                  className="aspect-[4/3] overflow-hidden cursor-pointer group"
+                  onClick={() => setFullscreenPhoto(photo)}
+                >
                   <img
-                    src={photo.fixedUrl}
+                    src={getCurrentImageUrl(photo)}
                     alt="Restored photo"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
               </div>
@@ -191,14 +216,28 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                 {/* View toggles */}
                 <div className="space-y-4">
                   <div className="flex space-x-2">
-                    <button className="flex-1 p-2 rounded-lg text-xs bg-secondary text-secondary-foreground hover:bg-secondary-hover transition-all">
+                    <button 
+                      onClick={() => setCurrentView(photo.id, 'original')}
+                      className={`flex-1 p-2 rounded-lg text-xs transition-all ${
+                        getCurrentView(photo.id) === 'original' 
+                          ? 'bg-primary text-primary-foreground' 
+                          : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
+                      }`}
+                    >
                       <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden">
                         <img src={photo.originalUrl} alt="Original" className="w-full h-full object-cover" />
                       </div>
                       Original
                     </button>
                     
-                    <button className="flex-1 p-2 rounded-lg text-xs bg-primary text-primary-foreground transition-all">
+                    <button 
+                      onClick={() => setCurrentView(photo.id, 'enhanced')}
+                      className={`flex-1 p-2 rounded-lg text-xs transition-all ${
+                        getCurrentView(photo.id) === 'enhanced' 
+                          ? 'bg-primary text-primary-foreground' 
+                          : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
+                      }`}
+                    >
                       <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden">
                         <img src={photo.fixedUrl} alt="Enhanced" className="w-full h-full object-cover" />
                       </div>
@@ -206,7 +245,14 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                     </button>
                     
                     {photo.videoUrl ? (
-                      <button className="flex-1 p-2 rounded-lg text-xs bg-secondary text-secondary-foreground hover:bg-secondary-hover transition-all">
+                      <button 
+                        onClick={() => setCurrentView(photo.id, 'video')}
+                        className={`flex-1 p-2 rounded-lg text-xs transition-all ${
+                          getCurrentView(photo.id) === 'video' 
+                            ? 'bg-primary text-primary-foreground' 
+                            : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
+                        }`}
+                      >
                         <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden relative">
                           <img src={photo.fixedUrl} alt="Video" className="w-full h-full object-cover" />
                           <div className="absolute inset-0 flex items-center justify-center">
@@ -216,11 +262,14 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                         Video
                       </button>
                     ) : (
-                      <button className="flex-1 p-2 rounded-lg text-xs bg-secondary text-secondary-foreground hover:bg-secondary-hover transition-all">
-                        <div className="aspect-[4/3] bg-muted rounded mb-1 flex items-center justify-center">
-                          <Video className="h-4 w-4 text-muted-foreground" />
+                      <button className="flex-1 p-2 rounded-lg text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg relative">
+                        <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center">
+                          <Video className="h-4 w-4 text-white" />
                         </div>
-                        Make Video
+                        <div className="flex items-center justify-center space-x-1">
+                          <span>Make Video</span>
+                          <span className="bg-white/20 px-1 rounded text-xs font-bold">New</span>
+                        </div>
                       </button>
                     )}
                   </div>
@@ -248,6 +297,25 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
           </div>
         ))}
       </div>
+
+      {/* Fullscreen Modal */}
+      {fullscreenPhoto && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setFullscreenPhoto(null)}>
+          <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={getCurrentImageUrl(fullscreenPhoto)}
+              alt="Fullscreen photo"
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+            <button
+              onClick={() => setFullscreenPhoto(null)}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Load more placeholder */}
       <div className="text-center py-12">

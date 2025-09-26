@@ -85,7 +85,7 @@ const Index = () => {
       
       <div className="container mx-auto px-6 py-6 relative">
         {/* Left Column - Upload Widget */}
-        <div className="hidden sm:block left-column-bg rounded-xl p-6 absolute top-6 bottom-0 left-6 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] overflow-y-auto z-40">
+        <div className="hidden sm:block left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 left-6 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] overflow-y-auto z-40">
           <UploadWidget 
             onFileSelect={handleFileSelect}
             isProcessing={!!processingPhoto}

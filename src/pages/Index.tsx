@@ -103,6 +103,16 @@ const Index = () => {
           />
         </div>
 
+        {/* Mobile Upload Widget - Show on small screens */}
+        <div className="sm:hidden mb-6 px-6 pt-6">
+          <div className="left-column-bg rounded-xl p-6">
+            <UploadWidget 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+          </div>
+        </div>
+
         {/* Main Content Container */}
         <div className="container mx-auto px-6 py-6">
           <div className="ml-0 sm:ml-[311px] md:ml-[331px] lg:ml-[351px] xl:ml-[371px]">
@@ -127,16 +137,6 @@ const Index = () => {
               completedPhotos={completedPhotos}
             />
               </div>
-            </div>
-          </div>
-
-          {/* Mobile Upload Widget - Show on small screens */}
-          <div className="sm:hidden mb-6">
-            <div className="left-column-bg rounded-xl p-6">
-              <UploadWidget 
-                onFileSelect={handleFileSelect}
-                isProcessing={!!processingPhoto}
-              />
             </div>
           </div>
         </div>

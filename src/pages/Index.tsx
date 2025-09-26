@@ -88,21 +88,15 @@ const Index = () => {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-xl font-bold">Recent Fixes</h2>
+                  <h2 className="text-xl font-bold">Recent Fixes <span className="text-sm font-normal text-muted-foreground">(183 Total Fixes)</span></h2>
                 </div>
               </div>
               
-              <div className="relative">
-                <div className="absolute top-0 right-0 bg-secondary px-3 py-1 rounded-full z-10">
-                  <span className="text-sm font-medium">183 Total Fixes</span>
-                </div>
-              
-                <PhotoFeed
-                  onPhotoSelect={handlePhotoSelect}
-                  processingPhoto={processingPhoto}
-                  processingProgress={processingProgress}
-                />
-              </div>
+              <PhotoFeed
+                onPhotoSelect={handlePhotoSelect}
+                processingPhoto={processingPhoto}
+                processingProgress={processingProgress}
+              />
             </div>
           </div>
         </div>

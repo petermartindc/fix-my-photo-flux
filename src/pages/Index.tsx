@@ -87,7 +87,7 @@ const Index = () => {
         {/* Left Column - Upload Widget - Fixed and aligned with header */}
         <div className="hidden sm:block left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] overflow-y-auto z-40"
              style={{
-               left: 'max(24px, calc((100vw - 1280px) / 2 + 24px))'
+               left: 'max(-1px, calc((100vw - 1280px) / 2 - 1px))'
              }}>
           <UploadWidget 
             onFileSelect={handleFileSelect}

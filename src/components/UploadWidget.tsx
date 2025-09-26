@@ -125,13 +125,13 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
             <Button
               variant="secondary"
               size="sm"
-              className="absolute top-2 right-2"
+              className="absolute top-2 right-2 h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 handleClear();
               }}
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </Button>
           </div>
         ) : (

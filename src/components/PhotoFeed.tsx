@@ -205,14 +205,14 @@ const samplePhotos: PhotoResult[] = [
 
 const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress }: PhotoFeedProps) => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
-  const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'enhanced' | 'video'>>({});
+  const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'fixed' | 'video'>>({});
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
   
   const getCurrentView = (photoId: string) => {
-    return currentViews[photoId] || 'enhanced';
+    return currentViews[photoId] || 'fixed';
   };
   
-  const setCurrentView = (photoId: string, view: 'original' | 'enhanced' | 'video') => {
+  const setCurrentView = (photoId: string, view: 'original' | 'fixed' | 'video') => {
     setCurrentViews(prev => ({ ...prev, [photoId]: view }));
   };
   
@@ -318,7 +318,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
               </div>
               
               {/* Right side - Controls and info */}
-              <div className="lg:col-span-4 p-6 bg-card flex flex-col justify-between">
+              <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-between">
                 {/* Photo info */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -353,17 +353,17 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                     </button>
                     
                     <button 
-                      onClick={() => setCurrentView(photo.id, 'enhanced')}
+                      onClick={() => setCurrentView(photo.id, 'fixed')}
                       className={`p-2 rounded-lg text-xs transition-all ${
-                        getCurrentView(photo.id) === 'enhanced' 
+                        getCurrentView(photo.id) === 'fixed' 
                           ? 'bg-primary text-primary-foreground' 
                           : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
                       }`}
                     >
                       <div className="aspect-[4/3] bg-muted rounded mb-1 overflow-hidden">
-                        <img src={photo.fixedUrl} alt="Enhanced" className="w-full h-full object-cover" />
+                        <img src={photo.fixedUrl} alt="Fixed" className="w-full h-full object-cover" />
                       </div>
-                      Enhanced
+                      Fixed
                     </button>
                     
                     {photo.videoUrl ? (

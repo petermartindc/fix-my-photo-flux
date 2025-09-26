@@ -315,13 +315,13 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
               {/* Left side - Image */}
               <div className="lg:col-span-8">
                 <div 
-                  className="min-h-[300px] max-h-[600px] bg-muted overflow-hidden cursor-pointer relative flex items-center justify-center"
+                  className="aspect-[4/3] overflow-hidden cursor-pointer relative"
                   onClick={() => setFullscreenPhoto(photo)}
                 >
                   <img
                     src={getCurrentImageUrl(photo)}
                     alt="Restored photo"
-                    className="max-w-full max-h-full object-contain transition-all duration-300"
+                    className="w-full h-full object-cover transition-all duration-300"
                   />
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300" />
                 </div>

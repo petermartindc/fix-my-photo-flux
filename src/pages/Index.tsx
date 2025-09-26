@@ -109,7 +109,7 @@ const Index = () => {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                <h2 className="text-xl font-bold flex items-center gap-3">
+                <h2 className="text-2xl font-bold flex items-center gap-3">
                   Recent Fixes 
                   <span className="bg-secondary text-secondary-foreground text-sm font-normal px-3 py-1 rounded-full">
                     183

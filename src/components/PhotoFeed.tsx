@@ -396,16 +396,16 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                     ) : (
                       <div className="relative">
                         <button 
-                          className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium group"
+                          className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium relative group"
                         >
                           <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
                             <span className="text-white font-bold text-lg">▶</span>
                           </div>
                           Animate!
-                          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 w-40 text-center leading-relaxed">
-                            Create a 5-second animated video
-                          </div>
                         </button>
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 w-40 text-center leading-relaxed">
+                          Create a 5-second animated video
+                        </div>
                       </div>
                     )}
                   </div>
@@ -450,19 +450,22 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-lg flex items-center justify-center z-50 p-[30px]" onClick={() => setFullscreenPhoto(null)}>
-          <div className="relative w-full h-full bg-background-secondary/95 backdrop-blur-sm rounded-2xl border border-border/50 shadow-2xl overflow-hidden">
-            <div className="absolute inset-0 p-8 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 p-[45px]" onClick={() => setFullscreenPhoto(null)}>
+          <div className="relative w-full h-full bg-background-secondary/95 backdrop-blur-sm rounded-3xl border border-border/50 shadow-2xl overflow-hidden">
+            <div className="absolute inset-0 p-[30px] flex items-center justify-center">
               <img
                 src={getCurrentImageUrl(fullscreenPhoto)}
                 alt="Fullscreen photo"
-                className="max-w-full max-h-full object-contain cursor-pointer rounded-lg shadow-lg"
+                className="max-w-full max-h-full object-contain cursor-pointer rounded-xl shadow-2xl"
+                style={{
+                  filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.1))'
+                }}
                 onClick={() => setFullscreenPhoto(null)}
               />
             </div>
             <button
               onClick={() => setFullscreenPhoto(null)}
-              className="absolute top-6 right-6 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all backdrop-blur-sm border border-white/20"
+              className="absolute top-8 right-8 bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all backdrop-blur-sm border border-white/20"
             >
               <X className="h-6 w-6" />
             </button>

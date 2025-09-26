@@ -440,12 +440,13 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-[15px]" onClick={() => setFullscreenPhoto(null)}>
-          <div className="relative w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-[60px]" onClick={() => setFullscreenPhoto(null)}>
+          <div className="relative w-full h-full flex items-center justify-center">
             <img
               src={getCurrentImageUrl(fullscreenPhoto)}
               alt="Fullscreen photo"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain cursor-pointer"
+              onClick={() => setFullscreenPhoto(null)}
             />
             <button
               onClick={() => setFullscreenPhoto(null)}

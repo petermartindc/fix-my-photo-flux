@@ -321,104 +321,149 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
         {[...completedPhotos, ...samplePhotos].map((photo) => (
           <div key={photo.id} className="photo-card rounded-xl overflow-hidden group">
             {animateMode === photo.id ? (
-              // Animate Mode View
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">
+              // Animate Mode View with click-outside to close
+              <div 
+                className="fixed inset-0 bg-black/20 flex items-center justify-center z-40 p-4"
+                onClick={handleBackFromAnimate}
+              >
+                <div 
+                  className="w-full max-w-6xl bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-0 h-full max-h-[80vh] relative"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                {/* Close X button */}
+                <button
+                  onClick={handleBackFromAnimate}
+                  className="absolute top-4 right-4 z-10 bg-black/80 hover:bg-black text-white rounded-full p-2 transition-all border border-white/10"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+
                 {/* Left side - Animate Promotional Content */}
                 <div className="lg:col-span-8 p-8 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/50 dark:to-amber-950/50 relative">
                   {/* Back button */}
                   <button
                     onClick={handleBackFromAnimate}
-                    className="absolute top-4 left-4 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-black/80 rounded-lg text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-black transition-all shadow-sm border border-gray-200 dark:border-gray-700"
                   >
                     <ArrowLeft className="h-4 w-4" />
                     Back
                   </button>
 
-                  <div className="mt-12 space-y-6">
+                  <div className="mt-8 space-y-6">
                     {/* Header */}
-                    <div>
-                      <h2 className="text-2xl font-bold text-foreground mb-2">
+                    <div className="space-y-3">
+                      <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
                         Bring Your Photo to Life
                       </h2>
                       <p className="text-muted-foreground">
                         Transform your static image into a stunning 5-second animated video
                       </p>
+                      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+                        AI-Powered Animation
+                      </h3>
                     </div>
 
-                    {/* Content Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                      {/* Left: Thumbnail and Benefits */}
-                      <div className="space-y-6">
-                        <div className="w-32 h-24 bg-muted rounded-lg overflow-hidden">
-                          <img
-                            src={photo.fixedUrl}
-                            alt="Photo thumbnail"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        
-                        <div className="space-y-3">
-                          <h3 className="font-semibold text-foreground">AI-Powered Animation Features:</h3>
-                          <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                              Creates realistic motion and depth
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                              Perfect for sharing on social media
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                              High-quality 5-second video output
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                              Surprise friends and family
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Right: Video Preview Placeholder */}
-                      <div className="space-y-4">
-                        <p className="text-sm font-medium text-muted-foreground">Preview Example:</p>
-                        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center border-2 border-dashed border-border">
-                          <div className="text-center space-y-2">
-                            <Play className="h-8 w-8 mx-auto text-muted-foreground" />
-                            <p className="text-xs text-muted-foreground">Video Preview</p>
-                            <p className="text-xs text-muted-foreground">(Auto-playing example)</p>
-                          </div>
-                        </div>
-                      </div>
+                    {/* Benefits */}
+                    <div className="space-y-3">
+                      <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                          Creates realistic motion and depth
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                          Perfect for sharing on social media
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
+                          High-quality 5-second video output
+                        </li>
+                      </ul>
                     </div>
 
-                    {/* Call to Action */}
-                    <div className="pt-4">
-                      <Button 
-                        size="lg" 
-                        className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-4 text-base shadow-lg hover:shadow-orange-500/25 transition-all"
-                      >
-                        <Video className="h-5 w-5 mr-2" />
-                        Make Video (5 credits)
-                      </Button>
+                    {/* Call to Action with Thumbnail */}
+                    <div className="pt-6 flex items-center gap-4">
+                      <div className="w-16 h-12 bg-muted rounded-lg overflow-hidden flex-shrink-0">
+                        <img
+                          src={photo.fixedUrl}
+                          alt="Photo thumbnail"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <Button 
+                          size="lg" 
+                          className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-4 text-base shadow-lg hover:shadow-orange-500/25 transition-all"
+                        >
+                          <Video className="h-5 w-5 mr-2" />
+                          Make Video (5 credits)
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                {/* Right side - Original Controls (hidden in animate mode) */}
-                <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-center items-center">
-                  <div className="text-center space-y-4">
-                    <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
-                      <Video className="h-8 w-8 text-orange-500" />
+                {/* Right side - Animation Examples */}
+                <div className="lg:col-span-4 p-6 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-6">
+                      Animation Examples
+                    </h4>
+                    
+                    {/* Example 1 */}
+                    <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm">
+                      <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 flex items-center justify-center relative">
+                        <img 
+                          src={samplePhoto1} 
+                          alt="Animation example 1" 
+                          className="w-full h-full object-cover opacity-80"
+                        />
+                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                          <Play className="h-6 w-6 text-white opacity-80" />
+                        </div>
+                      </div>
+                      <div className="p-2">
+                        <p className="text-xs text-gray-600 dark:text-gray-300">Portrait Animation</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-2">Animation Mode</h3>
-                      <p className="text-sm text-muted-foreground">Create your animated video with AI</p>
+
+                    {/* Example 2 */}
+                    <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm">
+                      <div className="aspect-video bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900 dark:to-green-800 flex items-center justify-center relative">
+                        <img 
+                          src={samplePhoto3} 
+                          alt="Animation example 2" 
+                          className="w-full h-full object-cover opacity-80"
+                        />
+                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                          <Play className="h-6 w-6 text-white opacity-80" />
+                        </div>
+                      </div>
+                      <div className="p-2">
+                        <p className="text-xs text-gray-600 dark:text-gray-300">Landscape Scene</p>
+                      </div>
                     </div>
-                  </div>
+
+                    {/* Example 3 */}
+                    <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm">
+                      <div className="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 flex items-center justify-center relative">
+                        <img 
+                          src={samplePhoto5} 
+                          alt="Animation example 3" 
+                          className="w-full h-full object-cover opacity-80"
+                        />
+                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                          <Play className="h-6 w-6 text-white opacity-80" />
+                        </div>
+                      </div>
+                      <div className="p-2">
+                        <p className="text-xs text-gray-600 dark:text-gray-300">Group Photo</p>
+                      </div>
+                     </div>
+                   </div>
+                 </div>
                 </div>
-              </div>
+               </div>
             ) : (
               // Normal View
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">

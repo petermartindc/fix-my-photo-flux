@@ -20,13 +20,14 @@ const Index = () => {
   const [currentView, setCurrentView] = useState<'original' | 'fixed' | 'video'>('fixed');
   const [processingPhoto, setProcessingPhoto] = useState<PhotoResult | null>(null);
   const [processingProgress, setProcessingProgress] = useState(0);
+  const [completedPhotos, setCompletedPhotos] = useState<PhotoResult[]>([]);
 
   const handleFileSelect = (file: File, instructions?: string) => {
     // Create a processing photo object
     const newPhoto: PhotoResult = {
       id: Date.now().toString(),
       originalUrl: URL.createObjectURL(file),
-      fixedUrl: URL.createObjectURL(file), // Placeholder
+      fixedUrl: URL.createObjectURL(file), // Will be the same for demo
       instructions,
       timestamp: "Processing...",
       dimensions: "Processing...",
@@ -37,27 +38,34 @@ const Index = () => {
     setProcessingPhoto(newPhoto);
     setProcessingProgress(0);
 
-    // Simulate processing
+    // Simulate 10-second processing with realistic progress
+    const startTime = Date.now();
+    const duration = 10000; // 10 seconds
+    
     const interval = setInterval(() => {
-      setProcessingProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          // Processing complete
-          setTimeout(() => {
-            const completedPhoto: PhotoResult = {
-              ...newPhoto,
-              timestamp: "Just now",
-              dimensions: "800x600"
-            };
-            setSelectedPhoto(completedPhoto);
-            setProcessingPhoto(null);
-            setProcessingProgress(0);
-          }, 500);
-          return 100;
-        }
-        return prev + Math.random() * 15 + 5;
-      });
-    }, 200);
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min((elapsed / duration) * 100, 100);
+      
+      setProcessingProgress(Math.floor(progress));
+      
+      if (progress >= 100) {
+        clearInterval(interval);
+        
+        // Processing complete - add to completed photos
+        setTimeout(() => {
+          const completedPhoto: PhotoResult = {
+            ...newPhoto,
+            timestamp: "Just now",
+            dimensions: `${Math.floor(Math.random() * 400 + 600)}x${Math.floor(Math.random() * 400 + 600)}`
+          };
+          
+          // Add to the top of completed photos
+          setCompletedPhotos(prev => [completedPhoto, ...prev]);
+          setProcessingPhoto(null);
+          setProcessingProgress(0);
+        }, 500);
+      }
+    }, 100);
   };
 
   const handlePhotoSelect = (photo: PhotoResult) => {
@@ -111,12 +119,13 @@ const Index = () => {
               </div>
               
               <div className="text-left">
-                <PhotoFeed
-                  onPhotoSelect={handlePhotoSelect}
-                  onFixAgain={handleFixAgain}
-                  processingPhoto={processingPhoto}
-                  processingProgress={processingProgress}
-                />
+            <PhotoFeed
+              onPhotoSelect={handlePhotoSelect}
+              onFixAgain={handleFixAgain}
+              processingPhoto={processingPhoto}
+              processingProgress={processingProgress}
+              completedPhotos={completedPhotos}
+            />
               </div>
             </div>
           </div>

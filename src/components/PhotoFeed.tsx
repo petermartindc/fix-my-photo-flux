@@ -29,6 +29,7 @@ interface PhotoFeedProps {
   onFixAgain?: (photo: PhotoResult) => void;
   processingPhoto?: PhotoResult | null;
   processingProgress?: number;
+  completedPhotos?: PhotoResult[];
 }
 
 const samplePhotos: PhotoResult[] = [
@@ -203,7 +204,7 @@ const samplePhotos: PhotoResult[] = [
   }
 ];
 
-const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress }: PhotoFeedProps) => {
+const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress, completedPhotos = [] }: PhotoFeedProps) => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
   const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'fixed' | 'video'>>({});
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
@@ -281,17 +282,25 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                 {processingProgress}%
               </span>
             </div>
-            <div className="w-full bg-progress-bg rounded-full h-2">
+            <div className="w-full bg-progress-bg rounded-full h-3">
               <div
-                className="bg-progress-fill h-2 rounded-full transition-all duration-300"
+                className="bg-progress-fill h-3 rounded-full transition-all duration-300"
                 style={{ width: `${processingProgress}%` }}
               />
             </div>
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">Processing image...</p>
-              </div>
+            <div className="aspect-video bg-muted rounded-lg overflow-hidden flex items-center justify-center">
+              {processingPhoto.originalUrl ? (
+                <img
+                  src={processingPhoto.originalUrl}
+                  alt="Processing photo"
+                  className="w-full h-full object-cover opacity-80 blur-sm"
+                />
+              ) : (
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2" />
+                  <p className="text-sm text-muted-foreground">Processing image...</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -299,7 +308,8 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Stacked photo results with integrated controls */}
       <div className="space-y-8">
-        {samplePhotos.map((photo) => (
+        {/* Show completed photos first, then sample photos */}
+        {[...completedPhotos, ...samplePhotos].map((photo) => (
           <div key={photo.id} className="photo-card rounded-xl overflow-hidden group">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">
               {/* Left side - Image */}

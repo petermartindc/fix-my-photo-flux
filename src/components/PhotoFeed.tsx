@@ -173,14 +173,15 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
               {/* Left side - Image */}
               <div className="lg:col-span-8">
                 <div 
-                  className="aspect-[4/3] overflow-hidden cursor-pointer group"
+                  className="aspect-[4/3] overflow-hidden cursor-pointer group relative"
                   onClick={() => setFullscreenPhoto(photo)}
                 >
                   <img
                     src={getCurrentImageUrl(photo)}
                     alt="Restored photo"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-all duration-300"
                   />
+                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20" />
                 </div>
               </div>
               
@@ -251,17 +252,20 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                         Video
                       </button>
                     ) : (
-                      <button className="flex-1 p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all transform hover:scale-105 font-medium">
-                        <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
-                          <div className="w-6 h-6 rounded-full bg-white/30 flex items-center justify-center">
-                            <div className="w-3 h-3 rounded-full bg-white animate-pulse" />
+                      <div className="flex-1 relative group">
+                        <button 
+                          className="w-full p-4 rounded-lg bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-semibold text-sm"
+                          title="Turn the restored photo into a 5-second animated video"
+                        >
+                          <div className="flex items-center justify-center space-x-2">
+                            <span>Animate!</span>
+                            <span className="bg-white/30 text-white text-xs px-1.5 py-0.5 rounded font-bold">5</span>
                           </div>
+                        </button>
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                          Turn the restored photo into a 5-second animated video
                         </div>
-                        <div className="flex items-center justify-center space-x-1">
-                          <span>Video</span>
-                          <span className="bg-white/30 text-white text-[10px] px-1 rounded font-bold">5</span>
-                        </div>
-                      </button>
+                      </div>
                     )}
                   </div>
                   
@@ -291,12 +295,12 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setFullscreenPhoto(null)}>
-          <div className="relative max-w-[98vw] max-h-[98vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-0" onClick={() => setFullscreenPhoto(null)}>
+          <div className="relative w-screen h-screen flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <img
               src={getCurrentImageUrl(fullscreenPhoto)}
               alt="Fullscreen photo"
-              className="max-w-full max-h-full object-contain"
+              className="w-full h-full object-contain"
             />
             <button
               onClick={() => setFullscreenPhoto(null)}

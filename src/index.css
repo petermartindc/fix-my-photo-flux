@@ -123,7 +123,6 @@
   
   .photo-card:hover {
     box-shadow: var(--shadow-hover), 0 0 40px hsl(var(--primary) / 0.2);
-    transform: scale(1.02);
   }
   
   /* Left column background */

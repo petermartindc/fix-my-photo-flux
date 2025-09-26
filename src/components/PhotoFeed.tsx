@@ -105,6 +105,100 @@ const samplePhotos: PhotoResult[] = [
     dimensions: "750x1100",
     fileSize: "2.2 MB",
     model: "Kontext Pro"
+  },
+  {
+    id: "9",
+    originalUrl: samplePhoto1,
+    fixedUrl: samplePhoto1,
+    videoUrl: samplePhoto1,
+    timestamp: "4 days ago",
+    dimensions: "900x650",
+    fileSize: "2.8 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "10",
+    originalUrl: samplePhoto2,
+    fixedUrl: samplePhoto2,
+    timestamp: "5 days ago",
+    dimensions: "650x950",
+    fileSize: "1.5 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "11",
+    originalUrl: samplePhoto3,
+    fixedUrl: samplePhoto3,
+    timestamp: "1 week ago",
+    dimensions: "800x600",
+    fileSize: "2.6 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "12",
+    originalUrl: samplePhoto4,
+    fixedUrl: samplePhoto4,
+    videoUrl: samplePhoto4,
+    timestamp: "1 week ago",
+    dimensions: "720x980",
+    fileSize: "2.1 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "13",
+    originalUrl: samplePhoto5,
+    fixedUrl: samplePhoto5,
+    timestamp: "1 week ago",
+    dimensions: "800x600",
+    fileSize: "1.9 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "14",
+    originalUrl: samplePhoto6,
+    fixedUrl: samplePhoto6,
+    timestamp: "2 weeks ago",
+    dimensions: "580x820",
+    fileSize: "1.6 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "15",
+    originalUrl: samplePhoto7,
+    fixedUrl: samplePhoto7,
+    videoUrl: samplePhoto7,
+    timestamp: "2 weeks ago",
+    dimensions: "800x600",
+    fileSize: "2.3 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "16",
+    originalUrl: samplePhoto8,
+    fixedUrl: samplePhoto8,
+    timestamp: "3 weeks ago",
+    dimensions: "740x1050",
+    fileSize: "2.7 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "17",
+    originalUrl: samplePhoto1,
+    fixedUrl: samplePhoto1,
+    timestamp: "3 weeks ago",
+    dimensions: "800x600",
+    fileSize: "2.0 MB",
+    model: "Kontext Pro"
+  },
+  {
+    id: "18",
+    originalUrl: samplePhoto2,
+    fixedUrl: samplePhoto2,
+    videoUrl: samplePhoto2,
+    timestamp: "1 month ago",
+    dimensions: "620x880",
+    fileSize: "1.8 MB",
+    model: "Kontext Pro"
   }
 ];
 
@@ -262,7 +356,7 @@ const PhotoFeed = ({ onPhotoSelect, processingPhoto, processingProgress }: Photo
                           </div>
                           Animate!
                         </button>
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 max-w-40 text-center">
                           Turn the restored photo into a 5-second animated video
                         </div>
                       </div>

@@ -94,7 +94,7 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
   }, [handlePaste]);
 
   return (
-    <div className="sticky top-20 space-y-4">
+    <div className="space-y-4">
       {/* Upload area */}
       <div
         className={`upload-widget p-4 text-center cursor-pointer min-h-[140px] ${

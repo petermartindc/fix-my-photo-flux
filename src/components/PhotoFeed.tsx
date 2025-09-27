@@ -326,8 +326,8 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
             <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-center">
               <div className="space-y-4 text-center">
                 <div className="space-y-2">
-                  <h4 className="text-lg font-semibold text-foreground">Fixing your photo</h4>
-                  <p className="text-sm text-muted-foreground">AI is working its magic to enhance your image</p>
+                  <h4 className="text-xl font-semibold text-foreground">Fixing your photo</h4>
+                  <p className="text-sm text-muted-foreground">AI is working its magic</p>
                 </div>
               </div>
             </div>

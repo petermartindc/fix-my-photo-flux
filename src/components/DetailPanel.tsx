@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Play, Download, ArrowUp } from "lucide-react";
+import { Play, Download, Share } from "lucide-react";
 
 interface PhotoResult {
   id: string;
@@ -176,7 +176,7 @@ const DetailPanel = ({ selectedPhoto, onViewChange, currentView }: DetailPanelPr
               Download
             </Button>
             <Button variant="secondary" className="btn-secondary">
-              <ArrowUp className="h-4 w-4 mr-1" />
+              <Share className="h-4 w-4 mr-1" />
               Share
             </Button>
           </div>

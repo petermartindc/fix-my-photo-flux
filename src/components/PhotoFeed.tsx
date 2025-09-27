@@ -474,10 +474,6 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                       </span>
                     </div>
                     
-                    <div className="space-y-1 text-xs text-muted-foreground">
-                      <p>{photo.dimensions}</p>
-                      <p>{photo.fileSize}</p>
-                    </div>
                   </div>
                   
                   {/* View toggles */}

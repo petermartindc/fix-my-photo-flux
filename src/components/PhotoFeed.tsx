@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, Share2, RotateCcw, Play, Video, X, ArrowLeft, Upload } from "lucide-react";
+import { Download, ArrowUp, RotateCcw, Play, Video, X, ArrowLeft, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PhotoResult, PhotoFeedProps, DEFAULT_MODEL } from "@/types";
 
@@ -577,7 +577,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                           className="btn-secondary"
                           onClick={() => handleShare(photo)}
                         >
-                          <Share2 className="h-4 w-4 mr-1" />
+                          <ArrowUp className="h-4 w-4 mr-1" />
                           Share
                         </Button>
                         <Button 

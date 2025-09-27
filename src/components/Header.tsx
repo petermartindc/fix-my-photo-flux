@@ -15,7 +15,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between px-6">
         {/* Logo */}
         <div className="flex items-center">
-          <img src={logo} alt="FixMyPhoto Logo" className="h-20" />
+          <img src={logo} alt="FixMyPhoto Logo" className="h-16" />
         </div>
 
         {/* User info */}

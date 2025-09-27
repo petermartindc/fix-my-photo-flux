@@ -3,207 +3,6 @@ import { Download, Share, RotateCcw, Play, Video, X, ArrowLeft, Upload, Star } f
 import { Button } from "@/components/ui/button";
 import { PhotoResult, PhotoFeedProps, DEFAULT_MODEL } from "@/types";
 
-// Import sample photos
-import samplePhoto1 from "@/assets/sample-photo-1.jpg";
-import samplePhoto2 from "@/assets/sample-photo-2.jpg";
-import samplePhoto3 from "@/assets/sample-photo-3.jpg";
-import samplePhoto4 from "@/assets/sample-photo-4.jpg";
-import samplePhoto5 from "@/assets/sample-photo-5.jpg";
-import samplePhoto6 from "@/assets/sample-photo-6.jpg";
-import samplePhoto7 from "@/assets/sample-photo-7.jpg";
-import samplePhoto8 from "@/assets/sample-photo-8.jpg";
-
-const samplePhotos: PhotoResult[] = [
-  {
-    id: "1",
-    originalUrl: samplePhoto1,
-    fixedUrl: samplePhoto1,
-    instructions: "Give her blue eyes and sandy blonde hair",
-    timestamp: "2 minutes ago",
-    dimensions: "800x600",
-    fileSize: "2.1 MB",
-    model: DEFAULT_MODEL,
-    favorited: true
-  },
-  {
-    id: "2",
-    originalUrl: samplePhoto2,
-    fixedUrl: samplePhoto2,
-    videoUrl: samplePhoto2,
-    instructions: "Remove the fire hydrant in the background",
-    timestamp: "15 minutes ago",
-    dimensions: "600x900",
-    fileSize: "1.8 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "3",
-    originalUrl: samplePhoto3,
-    fixedUrl: samplePhoto3,
-    instructions: "Change the setting to an outdoor garden",
-    timestamp: "1 hour ago",
-    dimensions: "800x600",
-    fileSize: "2.3 MB",
-    model: DEFAULT_MODEL,
-    favorited: true
-  },
-  {
-    id: "4",
-    originalUrl: samplePhoto4,
-    fixedUrl: samplePhoto4,
-    instructions: "Change the decoration and style of the interior to a modern and stylish boho-chic aesthetic",
-    timestamp: "2 hours ago",
-    dimensions: "700x1000",
-    fileSize: "1.9 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "5",
-    originalUrl: samplePhoto5,
-    fixedUrl: samplePhoto5,
-    videoUrl: samplePhoto5,
-    instructions: "Add warm golden hour lighting and remove shadows",
-    timestamp: "3 hours ago",
-    dimensions: "800x600",
-    fileSize: "2.0 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "6",
-    originalUrl: samplePhoto6,
-    fixedUrl: samplePhoto6,
-    instructions: "Replace the grey sky with a beautiful sunset",
-    timestamp: "1 day ago",
-    dimensions: "600x850",
-    fileSize: "1.7 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "7",
-    originalUrl: samplePhoto7,
-    fixedUrl: samplePhoto7,
-    instructions: "Change her outfit to a flowing white dress",
-    timestamp: "2 days ago",
-    dimensions: "800x600",
-    fileSize: "2.4 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "8",
-    originalUrl: samplePhoto8,
-    fixedUrl: samplePhoto8,
-    videoUrl: samplePhoto8,
-    instructions: "Remove all people from the background and add cherry blossoms",
-    timestamp: "3 days ago",
-    dimensions: "750x1100",
-    fileSize: "2.2 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "9",
-    originalUrl: samplePhoto1,
-    fixedUrl: samplePhoto1,
-    videoUrl: samplePhoto1,
-    instructions: "Make the background a cozy coffee shop with warm lighting",
-    timestamp: "4 days ago",
-    dimensions: "900x650",
-    fileSize: "2.8 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "10",
-    originalUrl: samplePhoto2,
-    fixedUrl: samplePhoto2,
-    instructions: "Add natural makeup with rosy cheeks and glossy lips",
-    timestamp: "5 days ago",
-    dimensions: "650x950",
-    fileSize: "1.5 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "11",
-    originalUrl: samplePhoto3,
-    fixedUrl: samplePhoto3,
-    instructions: "Change shirt color to deep navy",
-    timestamp: "1 week ago",
-    dimensions: "800x600",
-    fileSize: "2.6 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "12",
-    originalUrl: samplePhoto4,
-    fixedUrl: samplePhoto4,
-    videoUrl: samplePhoto4,
-    instructions: "Remove power lines from background",
-    timestamp: "1 week ago",
-    dimensions: "720x980",
-    fileSize: "2.1 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "13",
-    originalUrl: samplePhoto5,
-    fixedUrl: samplePhoto5,
-    instructions: "Fix red eye and brighten smile",
-    timestamp: "1 week ago",
-    dimensions: "800x600",
-    fileSize: "1.9 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "14",
-    originalUrl: samplePhoto6,
-    fixedUrl: samplePhoto6,
-    instructions: "She had icy blue eyes and a peach dress",
-    timestamp: "2 weeks ago",
-    dimensions: "580x820",
-    fileSize: "1.6 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "15",
-    originalUrl: samplePhoto7,
-    fixedUrl: samplePhoto7,
-    videoUrl: samplePhoto7,
-    instructions: "Smooth skin and whiten teeth naturally",
-    timestamp: "2 weeks ago",
-    dimensions: "800x600",
-    fileSize: "2.3 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "16",
-    originalUrl: samplePhoto8,
-    fixedUrl: samplePhoto8,
-    instructions: "Change background to mountain landscape",
-    timestamp: "3 weeks ago",
-    dimensions: "740x1050",
-    fileSize: "2.7 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "17",
-    originalUrl: samplePhoto1,
-    fixedUrl: samplePhoto1,
-    instructions: "Remove shadow under chin",
-    timestamp: "3 weeks ago",
-    dimensions: "800x600",
-    fileSize: "2.0 MB",
-    model: DEFAULT_MODEL
-  },
-  {
-    id: "18",
-    originalUrl: samplePhoto2,
-    fixedUrl: samplePhoto2,
-    videoUrl: samplePhoto2,
-    instructions: "Add professional studio lighting effect",
-    timestamp: "1 month ago",
-    dimensions: "620x880",
-    fileSize: "1.8 MB",
-    model: DEFAULT_MODEL
-  }
-];
 
 const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress, completedPhotos = [], newlyCompletedId, onToggleFavorite }: PhotoFeedProps) => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
@@ -211,7 +10,6 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
   const [animateMode, setAnimateMode] = useState<string | null>(null);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
-  const [samplePhotosState, setSamplePhotosState] = useState<PhotoResult[]>(samplePhotos);
   
   const getCurrentView = (photoId: string) => {
     return currentViews[photoId] || 'fixed';
@@ -285,22 +83,12 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
   const handleToggleFavorite = (photoId: string) => {
     // Handle completed photos
     onToggleFavorite?.(photoId);
-    
-    // Handle sample photos
-    setSamplePhotosState(prev => 
-      prev.map(photo => 
-        photo.id === photoId 
-          ? { ...photo, favorited: !photo.favorited }
-          : photo
-      )
-    );
   };
 
   // Filter photos based on favorites toggle
-  const allPhotos = [...completedPhotos, ...samplePhotosState];
   const filteredPhotos = showFavoritesOnly 
-    ? allPhotos.filter(photo => photo.favorited)
-    : allPhotos;
+    ? completedPhotos.filter(photo => photo.favorited)
+    : completedPhotos;
 
   return (
     <div className="space-y-6">
@@ -361,6 +149,20 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Stacked photo results with integrated controls */}
       <div className="space-y-8">
+        {filteredPhotos.length === 0 && !processingPhoto && (
+          <div className="text-center py-16 space-y-6">
+            <div className="w-24 h-24 bg-muted rounded-full mx-auto flex items-center justify-center">
+              <Upload className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xl font-semibold">No photos yet</h3>
+              <p className="text-muted-foreground max-w-md mx-auto">
+                Upload your first photo to get started with AI-powered photo enhancement
+              </p>
+            </div>
+          </div>
+        )}
+        
         {/* Show completed photos first, then sample photos */}
         {filteredPhotos.map((photo) => (
           <div key={photo.id} className={`photo-card rounded-xl overflow-hidden group ${newlyCompletedId === photo.id ? 'animate-magical-reveal' : ''}`}>

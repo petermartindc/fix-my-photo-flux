@@ -94,7 +94,7 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
   return (
     <div className="space-y-4">
       <div
-        className={`upload-widget-holographic p-4 text-center cursor-pointer min-h-[200px] ${
+        className={`upload-widget-holographic p-4 text-center cursor-pointer min-h-[200px] flex items-center justify-center ${
           isDragOver ? "drag-over" : ""
         }`}
         onDrop={handleDrop}
@@ -133,8 +133,8 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
           </div>
         ) : (
           <div className="space-y-2">
-            <div className="mx-auto w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-              <ImageIcon className="h-4 w-4 text-primary" />
+            <div className="mx-auto w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <ImageIcon className="h-5 w-5 text-primary" />
             </div>
             <div>
               <p className="font-medium text-sm mb-1">Drop your photo here</p>

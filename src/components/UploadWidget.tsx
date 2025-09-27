@@ -157,8 +157,11 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
             <div className="h-4 w-4 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs cursor-help">
               i
             </div>
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 w-64 text-center leading-relaxed">
-              Provide specific instructions for how you'd like your photo enhanced. For example: "Remove background," "Fix lighting," "Remove person in red shirt," or "Make colors more vibrant."
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 w-64 text-left leading-relaxed">
+              • "Remove background"<br/>
+              • "Fix lighting"<br/>
+              • "Remove person in red shirt"<br/>
+              • "Make colors more vibrant"
             </div>
           </div>
         </div>

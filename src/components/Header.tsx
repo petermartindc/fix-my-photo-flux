@@ -1,6 +1,5 @@
 // No React imports needed for this component
 import { ChevronDown, Coins, User, Plus } from "lucide-react";
-import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,8 +13,11 @@ const Header = () => {
     <header className="fixed top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-6">
         {/* Logo */}
-        <div className="flex items-center">
-          <img src={logo} alt="FixMyPhoto Logo" className="h-16" />
+        <div className="flex items-center space-x-2">
+          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center">
+            <span className="text-primary-foreground font-bold text-sm">F</span>
+          </div>
+          <h1 className="text-xl font-bold">FixMyPhoto</h1>
         </div>
 
         {/* User info */}

@@ -121,31 +121,6 @@ const DetailPanel = ({ selectedPhoto, onViewChange, currentView }: DetailPanelPr
         </div>
       </div>
 
-      {/* Photo details */}
-      <div className="bg-card rounded-xl p-4">
-        <h3 className="font-medium mb-4">Details</h3>
-        <div className="space-y-3 text-sm">
-          <div>
-            <span className="text-muted-foreground">Processed:</span>
-            <p className="font-medium">{selectedPhoto.timestamp}</p>
-          </div>
-          <div>
-            <span className="text-muted-foreground">Dimensions:</span>
-            <p className="font-medium">{selectedPhoto.dimensions}</p>
-          </div>
-          <div>
-            <span className="text-muted-foreground">File Size:</span>
-            <p className="font-medium">{selectedPhoto.fileSize}</p>
-          </div>
-          {selectedPhoto.instructions && (
-            <div>
-              <span className="text-muted-foreground">Instructions:</span>
-              <p className="font-medium mt-1">{selectedPhoto.instructions}</p>
-            </div>
-          )}
-        </div>
-      </div>
-
       {/* Actions */}
       <div className="bg-card rounded-xl p-4">
         <h3 className="font-medium mb-4">Actions</h3>
@@ -180,6 +155,31 @@ const DetailPanel = ({ selectedPhoto, onViewChange, currentView }: DetailPanelPr
               Share
             </Button>
           </div>
+        </div>
+      </div>
+
+      {/* Photo details */}
+      <div className="bg-card rounded-xl p-4">
+        <h3 className="font-medium mb-4">Details</h3>
+        <div className="space-y-3 text-sm">
+          <div>
+            <span className="text-muted-foreground">Processed:</span>
+            <p className="font-medium">{selectedPhoto.timestamp}</p>
+          </div>
+          <div>
+            <span className="text-muted-foreground">Dimensions:</span>
+            <p className="font-medium">{selectedPhoto.dimensions}</p>
+          </div>
+          <div>
+            <span className="text-muted-foreground">File Size:</span>
+            <p className="font-medium">{selectedPhoto.fileSize}</p>
+          </div>
+          {selectedPhoto.instructions && (
+            <div>
+              <span className="text-muted-foreground">Instructions:</span>
+              <p className="font-medium mt-1">{selectedPhoto.instructions}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

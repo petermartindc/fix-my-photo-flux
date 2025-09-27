@@ -291,19 +291,24 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
     <div className="space-y-6">
       {/* Favorites filter */}
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Your Photos</h2>
+        <div className="flex items-center gap-3">
+          <h2 className="text-lg font-semibold">Your Fixes</h2>
+          <span className="text-sm bg-muted text-muted-foreground px-2 py-1 rounded-full">
+            {filteredPhotos.length}
+          </span>
+        </div>
         <button
           onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-          className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-sm ${
+          className={`p-2 rounded-lg transition-all ${
             showFavoritesOnly 
               ? 'bg-yellow-500/20 text-yellow-600 border border-yellow-500/30' 
               : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
           }`}
+          title={showFavoritesOnly ? 'Show all fixes' : 'Show favorites only'}
         >
           <Star 
             className={`h-4 w-4 ${showFavoritesOnly ? 'fill-yellow-500 text-yellow-500' : ''}`}
           />
-          {showFavoritesOnly ? '' : 'Favorites Only'}
         </button>
       </div>
       {/* Processing card */}
@@ -545,15 +550,15 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                         </p>
                         <button
                           onClick={() => onToggleFavorite?.(photo.id)}
-                          className="group relative"
+                          className="group relative p-1 -ml-1"
                           title={photo.favorited ? 'Remove from favorites' : 'Add to favorites'}
                         >
                           <Star 
-                            className={`h-4 w-4 ${
+                            className={`h-6 w-6 ${
                               photo.favorited 
                                 ? 'fill-yellow-500 text-yellow-500' 
                                 : 'text-muted-foreground hover:text-yellow-500 hover:fill-yellow-500/20'
-                            } transition-all duration-200 group-hover:scale-110`}
+                            } transition-all duration-200 group-hover:scale-110 cursor-pointer`}
                           />
                         </button>
                       </div>

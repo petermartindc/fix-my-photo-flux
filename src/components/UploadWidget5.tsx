@@ -175,7 +175,7 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
           disabled={!selectedFile || isProcessing}
           className="w-full btn-primary"
         >
-          {isProcessing ? "Processing..." : (
+          {isProcessing ? "Fixing..." : (
             <div className="flex items-center justify-center space-x-3">
               <Sparkles className="h-4 w-4" />
               <span>Fix My Photo</span>

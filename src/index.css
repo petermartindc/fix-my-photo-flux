@@ -178,26 +178,38 @@
   /* Processing animation */
   .processing-bg {
     background: linear-gradient(45deg, hsl(var(--background)), hsl(var(--background-secondary)), hsl(var(--card)), hsl(var(--background-secondary)));
-    background-size: 400% 400%;
-    animation: processing-pulse 3s ease-in-out infinite;
-    backdrop-filter: blur(1px);
+    background-size: 600% 600%;
+    animation: processing-pulse 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    backdrop-filter: blur(0.5px);
   }
   
   @keyframes processing-pulse {
-    0%, 100% { 
+    0% { 
       background-position: 0% 50%; 
+      backdrop-filter: blur(0.5px);
+    }
+    17% { 
+      background-position: 30% 20%; 
       backdrop-filter: blur(1px);
     }
-    25% { 
-      background-position: 100% 25%; 
-      backdrop-filter: blur(2px);
-    }
-    50% { 
-      background-position: 100% 100%; 
+    33% { 
+      background-position: 70% 30%; 
       backdrop-filter: blur(1.5px);
     }
-    75% { 
-      background-position: 0% 75%; 
+    50% { 
+      background-position: 100% 50%; 
+      backdrop-filter: blur(1px);
+    }
+    67% { 
+      background-position: 70% 70%; 
+      backdrop-filter: blur(0.8px);
+    }
+    83% { 
+      background-position: 30% 80%; 
+      backdrop-filter: blur(1.2px);
+    }
+    100% { 
+      background-position: 0% 50%; 
       backdrop-filter: blur(0.5px);
     }
   }

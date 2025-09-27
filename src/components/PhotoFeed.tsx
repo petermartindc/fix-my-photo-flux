@@ -387,149 +387,78 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
         {filteredPhotos.map((photo) => (
           <div key={photo.id} className={`photo-card rounded-xl overflow-hidden group ${newlyCompletedId === photo.id ? 'animate-magical-reveal' : ''}`}>
             {animateMode === photo.id ? (
-              // Animate Mode View with click-outside to close
+              // Landing Page Style Animate Modal
               <div 
-                className="fixed inset-0 bg-black/20 flex items-center justify-center z-40 p-4"
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-40 p-4"
                 onClick={handleBackFromAnimate}
               >
                 <div 
-                  className="w-full max-w-6xl bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-0 h-full max-h-[80vh] relative"
+                  className="w-full max-w-3xl bg-background rounded-3xl shadow-2xl relative animate-scale-in"
                   onClick={(e) => e.stopPropagation()}
+                  style={{
+                    boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+                  }}
                 >
-                {/* Close X button */}
-                <button
-                  onClick={handleBackFromAnimate}
-                  className="absolute top-4 right-4 z-10 bg-black/80 hover:bg-black text-white rounded-full p-2 transition-all border border-white/10"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-
-                {/* Left side - Animate Promotional Content */}
-                <div className="lg:col-span-8 p-8 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/50 dark:to-amber-950/50 relative">
-                  {/* Back button */}
+                  {/* Close button */}
                   <button
                     onClick={handleBackFromAnimate}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/80 dark:bg-black/80 rounded-lg text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-black transition-all shadow-sm border border-gray-200 dark:border-gray-700"
+                    className="absolute top-6 right-6 z-10 bg-muted hover:bg-muted/80 text-foreground rounded-full p-2 transition-all"
                   >
-                    <ArrowLeft className="h-4 w-4" />
-                    Back
+                    <X className="h-5 w-5" />
                   </button>
 
-                  <div className="mt-8 space-y-6">
-                    {/* Header */}
-                    <div className="space-y-3">
-                      <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
-                        Bring Your Photo to Life
-                      </h2>
-                      <p className="text-muted-foreground">
-                        Transform your static image into a stunning 5-second animated video
+                  {/* Centered Content */}
+                  <div className="px-8 py-16 sm:px-12 sm:py-20 text-center space-y-8">
+                    {/* Hero Title */}
+                    <div className="space-y-4">
+                      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent leading-tight">
+                        Transform Into Magic
+                      </h1>
+                      <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                        Turn your photo into a captivating 5-second video
                       </p>
-                      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-                        AI-Powered Animation
-                      </h3>
                     </div>
 
-                    {/* Benefits */}
-                    <div className="space-y-3">
-                      <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
-                        <li className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                          Creates realistic motion and depth
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                          Perfect for sharing on social media
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0" />
-                          High-quality 5-second video output
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Call to Action with Thumbnail */}
-                    <div className="pt-6 flex items-center gap-4">
-                      <div className="w-16 h-12 bg-muted rounded-lg overflow-hidden flex-shrink-0">
+                    {/* Large Thumbnail */}
+                    <div className="flex justify-center">
+                      <div className="w-64 h-48 sm:w-80 sm:h-60 bg-muted rounded-2xl overflow-hidden shadow-lg ring-1 ring-border/20 relative group">
                         <img
                           src={photo.fixedUrl}
-                          alt="Photo thumbnail"
-                          className="w-full h-full object-cover"
+                          alt="Your photo"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
-                      </div>
-                      <div className="flex-1">
-                        <Button 
-                          size="lg" 
-                          className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-4 text-base shadow-lg hover:shadow-orange-500/25 transition-all"
-                        >
-                          <Upload className="h-5 w-5 mr-2" />
-                          Make Video (5 credits)
-                        </Button>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                            <Play className="h-8 w-8 text-white" />
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Value Proposition */}
+                    <p className="text-lg text-muted-foreground max-w-lg mx-auto">
+                      AI brings photos to life with realistic motion and depth
+                    </p>
+
+                    {/* Massive CTA */}
+                    <div className="pt-4">
+                      <Button 
+                        size="lg"
+                        className="text-xl sm:text-2xl font-bold py-6 px-12 sm:py-8 sm:px-16 bg-gradient-to-r from-primary to-accent hover:from-primary-hover hover:to-accent shadow-2xl hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105 rounded-2xl"
+                      >
+                        <Video className="h-6 w-6 sm:h-8 sm:w-8 mr-3" />
+                        Create Magic ✨
+                      </Button>
+                    </div>
+
+                    {/* Credit info */}
+                    <p className="text-sm text-muted-foreground/70">
+                      5 credits • High-quality video output
+                    </p>
                   </div>
                 </div>
-                
-                {/* Right side - Animation Examples */}
-                <div className="lg:col-span-4 p-6 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200 text-center mb-6">
-                      Animation Examples
-                    </h4>
-                    
-                    {/* Example 1 */}
-                    <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm">
-                      <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 flex items-center justify-center relative">
-                        <img 
-                          src={samplePhoto1} 
-                          alt="Animation example 1" 
-                          className="w-full h-full object-cover opacity-80"
-                        />
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <Play className="h-6 w-6 text-white opacity-80" />
-                        </div>
-                      </div>
-                      <div className="p-2">
-                        <p className="text-xs text-gray-600 dark:text-gray-300">Portrait Animation</p>
-                      </div>
-                    </div>
-
-                    {/* Example 2 */}
-                    <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm">
-                      <div className="aspect-video bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900 dark:to-green-800 flex items-center justify-center relative">
-                        <img 
-                          src={samplePhoto3} 
-                          alt="Animation example 2" 
-                          className="w-full h-full object-cover opacity-80"
-                        />
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <Play className="h-6 w-6 text-white opacity-80" />
-                        </div>
-                      </div>
-                      <div className="p-2">
-                        <p className="text-xs text-gray-600 dark:text-gray-300">Landscape Scene</p>
-                      </div>
-                    </div>
-
-                    {/* Example 3 */}
-                    <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm">
-                      <div className="aspect-video bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 flex items-center justify-center relative">
-                        <img 
-                          src={samplePhoto5} 
-                          alt="Animation example 3" 
-                          className="w-full h-full object-cover opacity-80"
-                        />
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <Play className="h-6 w-6 text-white opacity-80" />
-                        </div>
-                      </div>
-                      <div className="p-2">
-                        <p className="text-xs text-gray-600 dark:text-gray-300">Group Photo</p>
-                      </div>
-                     </div>
-                   </div>
-                 </div>
-                </div>
-               </div>
+              </div>
             ) : (
               // Normal View
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">

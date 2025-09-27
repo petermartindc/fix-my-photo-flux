@@ -94,7 +94,7 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
   return (
     <div className="space-y-4">
       <div
-        className={`upload-widget-holographic p-4 text-center cursor-pointer min-h-[140px] ${
+        className={`upload-widget-holographic p-4 text-center cursor-pointer min-h-[200px] ${
           isDragOver ? "drag-over" : ""
         }`}
         onDrop={handleDrop}

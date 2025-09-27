@@ -282,42 +282,55 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
     <div className="space-y-6">
       {/* Processing card */}
       {processingPhoto && (
-        <div className="photo-card processing-bg p-6">
-          <div className="relative">
-            <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden flex items-center justify-center">
-              {processingPhoto.originalUrl ? (
-                <div className="relative w-full h-full">
-                  <img
-                    src={processingPhoto.originalUrl}
-                    alt="Processing photo"
-                    className="w-full h-full object-cover opacity-70 blur-sm"
-                  />
-                  {/* Undulating highlight effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" 
-                       style={{ 
-                         backgroundSize: '200% 100%',
-                         animation: 'shimmer 2s ease-in-out infinite'
-                       }} />
-                  
-                  {/* Centered progress overlay */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center space-y-3">
-                      <h3 className="font-medium text-white text-sm">Fixing Your Photo</h3>
-                      <div className="w-48 bg-white/20 rounded-full h-4">
-                        <div
-                          className="bg-primary h-4 rounded-full transition-all duration-300"
-                          style={{ width: `${processingProgress}%` }}
-                        />
+        <div className="photo-card rounded-xl overflow-hidden group">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 h-full">
+            {/* Left side - Processing Image */}
+            <div className="lg:col-span-8">
+              <div className="h-[400px] bg-muted overflow-hidden relative flex items-center justify-center processing-bg">
+                {processingPhoto.originalUrl ? (
+                  <div className="relative w-full h-full">
+                    <img
+                      src={processingPhoto.originalUrl}
+                      alt="Processing photo"
+                      className="w-full h-full object-contain opacity-70 blur-sm"
+                    />
+                    {/* Undulating highlight effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" 
+                         style={{ 
+                           backgroundSize: '200% 100%',
+                           animation: 'shimmer 2s ease-in-out infinite'
+                         }} />
+                    
+                    {/* Centered progress overlay */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center space-y-3">
+                        <h3 className="font-medium text-white text-sm">Fixing Your Photo</h3>
+                        <div className="w-64 bg-white/20 rounded-full h-4">
+                          <div
+                            className="bg-primary h-4 rounded-full transition-all duration-300"
+                            style={{ width: `${processingProgress}%` }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
+                ) : (
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2" />
+                    <p className="text-sm text-muted-foreground">Processing image...</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Right side - Processing info */}
+            <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-center">
+              <div className="space-y-4 text-center">
+                <div className="space-y-2">
+                  <h4 className="font-medium text-foreground">Processing Your Photo</h4>
+                  <p className="text-sm text-muted-foreground">AI is analyzing and enhancing your image</p>
                 </div>
-              ) : (
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2" />
-                  <p className="text-sm text-muted-foreground">Processing image...</p>
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

@@ -436,14 +436,14 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                     </div>
 
                     {/* Massive CTA */}
-                    <div className="pt-4">
+                    <div className="pt-4 space-y-2">
                       <Button 
                         size="lg"
                         className="text-xl sm:text-2xl font-bold py-6 px-10 sm:py-7 sm:px-12 bg-orange-500 hover:bg-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 rounded-2xl inline-flex items-center gap-2"
                       >
-                        Create Video ✨ 
-                        <span className="text-sm bg-orange-600 px-2 py-1 rounded-md">5</span>
+                        Create Video ✨
                       </Button>
+                      <p className="text-xs text-muted-foreground text-center">5 credits</p>
                     </div>
                   </div>
                 </div>

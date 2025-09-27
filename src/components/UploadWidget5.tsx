@@ -169,19 +169,21 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
         />
       </div>
 
-      <Button
-        onClick={handleSubmit}
-        disabled={!selectedFile || isProcessing}
-        className="w-full btn-primary"
-      >
-        {isProcessing ? "Processing..." : (
-          <div className="flex items-center justify-center space-x-3">
-            <Sparkles className="h-4 w-4" />
-            <span>Fix My Photo</span>
-            <span className="bg-primary-foreground/20 text-primary-foreground text-xs px-1.5 py-0.5 rounded-full font-medium">1</span>
-          </div>
-        )}
-      </Button>
+      <div className="space-y-2">
+        <Button
+          onClick={handleSubmit}
+          disabled={!selectedFile || isProcessing}
+          className="w-full btn-primary"
+        >
+          {isProcessing ? "Processing..." : (
+            <div className="flex items-center justify-center space-x-3">
+              <Sparkles className="h-4 w-4" />
+              <span>Fix My Photo</span>
+            </div>
+          )}
+        </Button>
+        <p className="text-xs text-muted-foreground text-center">1 credit</p>
+      </div>
     </div>
   );
 };

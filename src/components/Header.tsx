@@ -17,7 +17,8 @@ const Header = () => {
         <img 
           src={logo} 
           alt="FixMyPhoto" 
-          className="h-8 w-auto"
+          className="w-auto"
+          style={{ height: '60px' }}
         />
 
         {/* User info */}

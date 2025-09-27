@@ -606,11 +606,11 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 top-0 bg-black/80 flex items-center justify-center z-[100] p-8" onClick={() => setFullscreenPhoto(null)}>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-8" onClick={() => setFullscreenPhoto(null)}>
           <div 
-            className="relative max-w-6xl max-h-[90vh] bg-background border border-border/20 rounded-2xl overflow-hidden flex items-center justify-center"
+            className="relative max-w-6xl max-h-[90vh] bg-background border border-border/20 rounded-3xl overflow-hidden flex items-center justify-center animate-scale-in"
             style={{
-              boxShadow: '0 0 30px rgba(59, 130, 246, 0.15), 0 0 60px rgba(59, 130, 246, 0.05), 0 25px 50px rgba(0, 0, 0, 0.4)'
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -623,7 +623,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
             </div>
             <button
               onClick={() => setFullscreenPhoto(null)}
-              className="absolute top-4 right-4 bg-black/80 hover:bg-black text-white rounded-full p-2 transition-all border border-white/10"
+              className="absolute top-6 right-6 bg-muted hover:bg-muted/80 text-foreground rounded-full p-2 transition-all"
             >
               <X className="h-5 w-5" />
             </button>

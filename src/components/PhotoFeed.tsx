@@ -304,7 +304,6 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                     {/* Centered progress overlay */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                       <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center space-y-3">
-                        <h3 className="font-medium text-white text-sm">Fixing Your Photo</h3>
                         <div className="w-64 bg-white/20 rounded-full h-4">
                           <div
                             className="bg-primary h-4 rounded-full transition-all duration-300"
@@ -327,8 +326,8 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
             <div className="lg:col-span-4 p-6 bg-background-secondary flex flex-col justify-center">
               <div className="space-y-4 text-center">
                 <div className="space-y-2">
-                  <h4 className="font-medium text-foreground">Processing Your Photo</h4>
-                  <p className="text-sm text-muted-foreground">AI is analyzing and enhancing your image</p>
+                  <h4 className="text-lg font-semibold text-foreground">Fixing your photo</h4>
+                  <p className="text-sm text-muted-foreground">AI is working its magic to enhance your image</p>
                 </div>
               </div>
             </div>

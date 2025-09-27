@@ -11,6 +11,7 @@ const Index = () => {
   const [processingProgress, setProcessingProgress] = useState(0);
   const [completedPhotos, setCompletedPhotos] = useState<PhotoResult[]>([]);
   const [newlyCompletedId, setNewlyCompletedId] = useState<string | null>(null);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
   const handleFileSelect = (file: File, instructions?: string) => {
     // Create a processing photo object
@@ -82,6 +83,16 @@ const Index = () => {
     }
   };
 
+  const handleToggleFavorite = (photoId: string) => {
+    setCompletedPhotos(prev => 
+      prev.map(photo => 
+        photo.id === photoId 
+          ? { ...photo, favorited: !photo.favorited }
+          : photo
+      )
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background pt-16">
       <Header />
@@ -131,6 +142,7 @@ const Index = () => {
               processingProgress={processingProgress}
               completedPhotos={completedPhotos}
               newlyCompletedId={newlyCompletedId}
+              onToggleFavorite={handleToggleFavorite}
             />
               </div>
             </div>

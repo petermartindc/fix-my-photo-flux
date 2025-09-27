@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, Share, RotateCcw, Play, Video, X, ArrowLeft, Upload } from "lucide-react";
+import { Download, Share, RotateCcw, Play, Video, X, ArrowLeft, Upload, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PhotoResult, PhotoFeedProps, DEFAULT_MODEL } from "@/types";
 
@@ -22,7 +22,8 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 minutes ago",
     dimensions: "800x600",
     fileSize: "2.1 MB",
-    model: DEFAULT_MODEL
+    model: DEFAULT_MODEL,
+    favorited: true
   },
   {
     id: "2",
@@ -43,7 +44,8 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 hour ago",
     dimensions: "800x600",
     fileSize: "2.3 MB",
-    model: DEFAULT_MODEL
+    model: DEFAULT_MODEL,
+    favorited: true
   },
   {
     id: "4",
@@ -203,11 +205,12 @@ const samplePhotos: PhotoResult[] = [
   }
 ];
 
-const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress, completedPhotos = [], newlyCompletedId }: PhotoFeedProps) => {
+const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress, completedPhotos = [], newlyCompletedId, onToggleFavorite }: PhotoFeedProps) => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
   const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'fixed' | 'video'>>({});
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
   const [animateMode, setAnimateMode] = useState<string | null>(null);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   
   const getCurrentView = (photoId: string) => {
     return currentViews[photoId] || 'fixed';
@@ -278,8 +281,31 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
     setAnimateMode(null);
   };
 
+  // Filter photos based on favorites toggle
+  const allPhotos = [...completedPhotos, ...samplePhotos];
+  const filteredPhotos = showFavoritesOnly 
+    ? allPhotos.filter(photo => photo.favorited)
+    : allPhotos;
+
   return (
     <div className="space-y-6">
+      {/* Favorites filter */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold">Your Photos</h2>
+        <button
+          onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-sm ${
+            showFavoritesOnly 
+              ? 'bg-yellow-500/20 text-yellow-600 border border-yellow-500/30' 
+              : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
+          }`}
+        >
+          <Star 
+            className={`h-4 w-4 ${showFavoritesOnly ? 'fill-yellow-500 text-yellow-500' : ''}`}
+          />
+          {showFavoritesOnly ? 'Show All' : 'Favorites Only'}
+        </button>
+      </div>
       {/* Processing card */}
       {processingPhoto && (
         <div className="photo-card rounded-xl overflow-hidden group">
@@ -338,7 +364,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
       {/* Stacked photo results with integrated controls */}
       <div className="space-y-8">
         {/* Show completed photos first, then sample photos */}
-        {[...completedPhotos, ...samplePhotos].map((photo) => (
+        {filteredPhotos.map((photo) => (
           <div key={photo.id} className={`photo-card rounded-xl overflow-hidden group ${newlyCompletedId === photo.id ? 'animate-magical-reveal' : ''}`}>
             {animateMode === photo.id ? (
               // Animate Mode View with click-outside to close
@@ -513,9 +539,24 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                       </span>
                     </div>
                     {photo.instructions && (
-                      <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                        "{photo.instructions}"
-                      </p>
+                      <div className="space-y-2">
+                        <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
+                          "{photo.instructions}"
+                        </p>
+                        <button
+                          onClick={() => onToggleFavorite?.(photo.id)}
+                          className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <Star 
+                            className={`h-3 w-3 ${
+                              photo.favorited 
+                                ? 'fill-yellow-500 text-yellow-500' 
+                                : 'text-muted-foreground hover:text-yellow-500'
+                            } transition-colors`}
+                          />
+                          {photo.favorited ? 'Favorited' : 'Add to favorites'}
+                        </button>
+                      </div>
                     )}
                     
                   </div>

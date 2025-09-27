@@ -8,6 +8,7 @@ export interface PhotoResult {
   dimensions: string;
   fileSize: string;
   model: string;
+  favorited?: boolean;
 }
 
 export interface PhotoFeedProps {
@@ -17,6 +18,7 @@ export interface PhotoFeedProps {
   processingProgress?: number;
   completedPhotos?: PhotoResult[];
   newlyCompletedId?: string | null;
+  onToggleFavorite?: (photoId: string) => void;
 }
 
 // Constants

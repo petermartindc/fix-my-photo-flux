@@ -203,7 +203,7 @@ const samplePhotos: PhotoResult[] = [
   }
 ];
 
-const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress, completedPhotos = [] }: PhotoFeedProps) => {
+const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgress, completedPhotos = [], newlyCompletedId }: PhotoFeedProps) => {
   const [hoveredPhoto, setHoveredPhoto] = useState<string | null>(null);
   const [currentViews, setCurrentViews] = useState<Record<string, 'original' | 'fixed' | 'video'>>({});
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
@@ -339,7 +339,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
       <div className="space-y-8">
         {/* Show completed photos first, then sample photos */}
         {[...completedPhotos, ...samplePhotos].map((photo) => (
-          <div key={photo.id} className="photo-card rounded-xl overflow-hidden group">
+          <div key={photo.id} className={`photo-card rounded-xl overflow-hidden group ${newlyCompletedId === photo.id ? 'animate-magical-reveal' : ''}`}>
             {animateMode === photo.id ? (
               // Animate Mode View with click-outside to close
               <div 

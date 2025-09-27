@@ -16,6 +16,7 @@ export interface PhotoFeedProps {
   processingPhoto?: PhotoResult | null;
   processingProgress?: number;
   completedPhotos?: PhotoResult[];
+  newlyCompletedId?: string | null;
 }
 
 // Constants

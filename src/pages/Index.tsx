@@ -10,6 +10,7 @@ const Index = () => {
   const [processingPhoto, setProcessingPhoto] = useState<PhotoResult | null>(null);
   const [processingProgress, setProcessingProgress] = useState(0);
   const [completedPhotos, setCompletedPhotos] = useState<PhotoResult[]>([]);
+  const [newlyCompletedId, setNewlyCompletedId] = useState<string | null>(null);
 
   const handleFileSelect = (file: File, instructions?: string) => {
     // Create a processing photo object
@@ -47,10 +48,16 @@ const Index = () => {
             dimensions: `${Math.floor(Math.random() * 400 + 600)}x${Math.floor(Math.random() * 400 + 600)}`
           };
           
-          // Add to the top of completed photos
+          // Add to the top of completed photos with animation state
           setCompletedPhotos(prev => [completedPhoto, ...prev]);
+          setNewlyCompletedId(completedPhoto.id);
           setProcessingPhoto(null);
           setProcessingProgress(0);
+          
+          // Remove animation state after animation completes
+          setTimeout(() => {
+            setNewlyCompletedId(null);
+          }, 800);
         }, 500);
       }
     }, PROGRESS_UPDATE_INTERVAL);
@@ -123,6 +130,7 @@ const Index = () => {
               processingPhoto={processingPhoto}
               processingProgress={processingProgress}
               completedPhotos={completedPhotos}
+              newlyCompletedId={newlyCompletedId}
             />
               </div>
             </div>

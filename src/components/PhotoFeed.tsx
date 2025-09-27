@@ -410,12 +410,12 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                   {/* Centered Content */}
                   <div className="px-8 py-16 sm:px-12 sm:py-20 text-center space-y-8">
                     {/* Hero Title */}
-                    <div className="space-y-4">
-                      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                    <div className="space-y-4 max-w-4xl mx-auto">
+                      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
                         Create a Sharable Video!
                       </h1>
                       <p className="text-lg sm:text-xl text-muted-foreground/70 max-w-2xl mx-auto leading-relaxed">
-                        Magically transform your photo into a realistic 5 second video
+                        Magically transform your photo into a realistic 5-second video
                       </p>
                     </div>
 
@@ -439,7 +439,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                     <div className="pt-4">
                       <Button 
                         size="lg"
-                        className="text-lg sm:text-xl font-bold py-4 px-8 sm:py-5 sm:px-10 bg-orange-500 hover:bg-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 rounded-2xl inline-flex items-center gap-2"
+                        className="text-xl sm:text-2xl font-bold py-6 px-10 sm:py-7 sm:px-12 bg-orange-500 hover:bg-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 rounded-2xl inline-flex items-center gap-2"
                       >
                         Create Video ✨ 
                         <span className="text-sm bg-orange-600 px-2 py-1 rounded-md">5</span>

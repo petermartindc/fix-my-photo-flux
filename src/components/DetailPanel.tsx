@@ -72,7 +72,7 @@ const DetailPanel = ({ selectedPhoto, onViewChange, currentView }: DetailPanelPr
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/20 flex items-end">
-              <span className="text-white text-xs font-medium p-2">Original</span>
+              <span className="text-white text-[10px] font-medium p-2">Original</span>
             </div>
           </button>
 
@@ -91,7 +91,7 @@ const DetailPanel = ({ selectedPhoto, onViewChange, currentView }: DetailPanelPr
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/20 flex items-end">
-              <span className="text-white text-xs font-medium p-2">Fixed</span>
+              <span className="text-white text-[10px] font-medium p-2">Fixed</span>
             </div>
           </button>
 
@@ -114,7 +114,7 @@ const DetailPanel = ({ selectedPhoto, onViewChange, currentView }: DetailPanelPr
                 <Play className="h-6 w-6 text-white" />
               </div>
               <div className="absolute inset-0 bg-black/20 flex items-end">
-                <span className="text-white text-xs font-medium p-2">Video</span>
+                <span className="text-white text-[10px] font-medium p-2">Video</span>
               </div>
             </button>
           )}

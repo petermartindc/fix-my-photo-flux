@@ -304,28 +304,6 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
   return (
     <div className="space-y-6">
-      {/* Favorites filter */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <h2 className="text-lg font-semibold">Your Fixes</h2>
-          <span className="text-sm bg-muted text-muted-foreground px-2 py-1 rounded-full">
-            {filteredPhotos.length}
-          </span>
-        </div>
-        <button
-          onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-          className={`p-2 rounded-lg transition-all hover:scale-[1.02] duration-200 ${
-            showFavoritesOnly 
-              ? 'bg-yellow-500/20 text-yellow-600 border border-yellow-500/30' 
-              : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
-          }`}
-          title={showFavoritesOnly ? 'Show all fixes' : 'Show favorites only'}
-        >
-          <Star 
-            className={`h-4 w-4 ${showFavoritesOnly ? 'fill-yellow-500 text-yellow-500' : ''}`}
-          />
-        </button>
-      </div>
       {/* Processing card */}
       {processingPhoto && (
         <div className="photo-card rounded-xl overflow-hidden group">

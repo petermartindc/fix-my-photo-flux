@@ -303,7 +303,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
           <Star 
             className={`h-4 w-4 ${showFavoritesOnly ? 'fill-yellow-500 text-yellow-500' : ''}`}
           />
-          {showFavoritesOnly ? 'Show All' : 'Favorites Only'}
+          {showFavoritesOnly ? '' : 'Favorites Only'}
         </button>
       </div>
       {/* Processing card */}
@@ -545,16 +545,16 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                         </p>
                         <button
                           onClick={() => onToggleFavorite?.(photo.id)}
-                          className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                          className="group relative"
+                          title={photo.favorited ? 'Remove from favorites' : 'Add to favorites'}
                         >
                           <Star 
-                            className={`h-3 w-3 ${
+                            className={`h-4 w-4 ${
                               photo.favorited 
                                 ? 'fill-yellow-500 text-yellow-500' 
-                                : 'text-muted-foreground hover:text-yellow-500'
-                            } transition-colors`}
+                                : 'text-muted-foreground hover:text-yellow-500 hover:fill-yellow-500/20'
+                            } transition-all duration-200 group-hover:scale-110`}
                           />
-                          {photo.favorited ? 'Favorited' : 'Add to favorites'}
                         </button>
                       </div>
                     )}

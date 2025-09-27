@@ -111,24 +111,24 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
         />
 
         {preview ? (
-          <div className="relative">
-            <div className="w-full h-32 bg-muted rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+          <div className="relative w-full">
+            <div className="w-full h-40 bg-muted rounded-lg mb-3 flex items-center justify-center overflow-hidden">
               <img
                 src={preview}
                 alt="Preview"
-                className="max-w-full max-h-full object-contain rounded-lg"
+                className="max-w-full max-h-full object-contain"
               />
             </div>
             <Button
               variant="secondary"
               size="sm"
-              className="absolute -top-1 -right-1 h-9 w-9 p-0 hover:bg-white hover:text-black transition-colors border border-white/20 hover:border-white"
+              className="absolute top-2 right-2 h-8 w-8 p-0 rounded-full hover:bg-white hover:text-black transition-colors border border-white/20 hover:border-white"
               onClick={(e) => {
                 e.stopPropagation();
                 handleClear();
               }}
             >
-              <X className="h-6 w-6" />
+              <X className="h-4 w-4" />
             </Button>
           </div>
         ) : (

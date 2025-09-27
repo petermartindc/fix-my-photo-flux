@@ -601,11 +601,11 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
       {/* Fullscreen Modal */}
       {fullscreenPhoto && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-8" onClick={() => setFullscreenPhoto(null)}>
+        <div className="fixed inset-0 top-0 bg-black/80 flex items-center justify-center z-[100] p-8" onClick={() => setFullscreenPhoto(null)}>
           <div 
             className="relative max-w-6xl max-h-[90vh] bg-background border border-border/20 rounded-2xl overflow-hidden flex items-center justify-center"
             style={{
-              boxShadow: '0 0 60px rgba(59, 130, 246, 0.3), 0 0 120px rgba(59, 130, 246, 0.1), 0 25px 50px rgba(0, 0, 0, 0.4)'
+              boxShadow: '0 0 30px rgba(59, 130, 246, 0.15), 0 0 60px rgba(59, 130, 246, 0.05), 0 25px 50px rgba(0, 0, 0, 0.4)'
             }}
             onClick={(e) => e.stopPropagation()}
           >

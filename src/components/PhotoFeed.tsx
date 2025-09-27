@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Download, Share2, RotateCcw, Play, Video, X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PhotoResult, PhotoFeedProps, DEFAULT_MODEL } from "@/types";
 
 // Import sample photos
 import samplePhoto1 from "@/assets/sample-photo-1.jpg";
@@ -12,26 +13,6 @@ import samplePhoto6 from "@/assets/sample-photo-6.jpg";
 import samplePhoto7 from "@/assets/sample-photo-7.jpg";
 import samplePhoto8 from "@/assets/sample-photo-8.jpg";
 
-interface PhotoResult {
-  id: string;
-  originalUrl: string;
-  fixedUrl: string;
-  videoUrl?: string;
-  instructions?: string;
-  timestamp: string;
-  dimensions: string;
-  fileSize: string;
-  model: string;
-}
-
-interface PhotoFeedProps {
-  onPhotoSelect: (photo: PhotoResult) => void;
-  onFixAgain?: (photo: PhotoResult) => void;
-  processingPhoto?: PhotoResult | null;
-  processingProgress?: number;
-  completedPhotos?: PhotoResult[];
-}
-
 const samplePhotos: PhotoResult[] = [
   {
     id: "1",
@@ -40,7 +21,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 minutes ago",
     dimensions: "800x600",
     fileSize: "2.1 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "2",
@@ -50,7 +31,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "15 minutes ago",
     dimensions: "600x900",
     fileSize: "1.8 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "3",
@@ -59,7 +40,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 hour ago",
     dimensions: "800x600",
     fileSize: "2.3 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "4",
@@ -68,7 +49,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 hours ago",
     dimensions: "700x1000",
     fileSize: "1.9 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "5",
@@ -78,7 +59,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "3 hours ago",
     dimensions: "800x600",
     fileSize: "2.0 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "6",
@@ -87,7 +68,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 day ago",
     dimensions: "600x850",
     fileSize: "1.7 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "7",
@@ -96,7 +77,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 days ago",
     dimensions: "800x600",
     fileSize: "2.4 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "8",
@@ -106,7 +87,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "3 days ago",
     dimensions: "750x1100",
     fileSize: "2.2 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "9",
@@ -116,7 +97,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "4 days ago",
     dimensions: "900x650",
     fileSize: "2.8 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "10",
@@ -125,7 +106,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "5 days ago",
     dimensions: "650x950",
     fileSize: "1.5 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "11",
@@ -134,7 +115,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 week ago",
     dimensions: "800x600",
     fileSize: "2.6 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "12",
@@ -144,7 +125,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 week ago",
     dimensions: "720x980",
     fileSize: "2.1 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "13",
@@ -153,7 +134,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 week ago",
     dimensions: "800x600",
     fileSize: "1.9 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "14",
@@ -162,7 +143,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 weeks ago",
     dimensions: "580x820",
     fileSize: "1.6 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "15",
@@ -172,7 +153,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "2 weeks ago",
     dimensions: "800x600",
     fileSize: "2.3 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "16",
@@ -181,7 +162,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "3 weeks ago",
     dimensions: "740x1050",
     fileSize: "2.7 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "17",
@@ -190,7 +171,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "3 weeks ago",
     dimensions: "800x600",
     fileSize: "2.0 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   },
   {
     id: "18",
@@ -200,7 +181,7 @@ const samplePhotos: PhotoResult[] = [
     timestamp: "1 month ago",
     dimensions: "620x880",
     fileSize: "1.8 MB",
-    model: "Kontext Pro"
+    model: DEFAULT_MODEL
   }
 ];
 

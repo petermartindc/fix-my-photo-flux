@@ -1,4 +1,4 @@
-import { useState } from "react";
+// No React imports needed for this component
 import { ChevronDown, Coins, User, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {

@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import UploadWidget from "@/components/UploadWidget";
 import PhotoFeed from "@/components/PhotoFeed";
-
-interface PhotoResult {
-  id: string;
-  originalUrl: string;
-  fixedUrl: string;
-  videoUrl?: string;
-  instructions?: string;
-  timestamp: string;
-  dimensions: string;
-  fileSize: string;
-  model: string;
-}
+import { PhotoResult, PROCESSING_DURATION, PROGRESS_UPDATE_INTERVAL, DEFAULT_MODEL } from "@/types";
 
 const Index = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoResult | null>(null);
@@ -32,19 +21,18 @@ const Index = () => {
       timestamp: "Processing...",
       dimensions: "Processing...",
       fileSize: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-      model: "Kontext Pro"
+      model: DEFAULT_MODEL
     };
 
     setProcessingPhoto(newPhoto);
     setProcessingProgress(0);
 
-    // Simulate 10-second processing with realistic progress
+    // Simulate processing with realistic progress
     const startTime = Date.now();
-    const duration = 10000; // 10 seconds
     
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const progress = Math.min((elapsed / duration) * 100, 100);
+      const progress = Math.min((elapsed / PROCESSING_DURATION) * 100, 100);
       
       setProcessingProgress(Math.floor(progress));
       
@@ -65,7 +53,7 @@ const Index = () => {
           setProcessingProgress(0);
         }, 500);
       }
-    }, 100);
+    }, PROGRESS_UPDATE_INTERVAL);
   };
 
   const handlePhotoSelect = (photo: PhotoResult) => {

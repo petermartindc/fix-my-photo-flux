@@ -93,7 +93,6 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
 
   return (
     <div className="space-y-4">
-      <div className="text-xs font-medium text-center mb-2 text-muted-foreground">Style 5: Holographic Shimmer</div>
       <div
         className={`upload-widget-holographic p-4 text-center cursor-pointer min-h-[140px] ${
           isDragOver ? "drag-over" : ""

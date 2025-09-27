@@ -169,7 +169,7 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
         />
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Button
           onClick={handleSubmit}
           disabled={!selectedFile || isProcessing}
@@ -182,7 +182,7 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
             </div>
           )}
         </Button>
-        <p className="text-xs text-muted-foreground text-center">1 credit</p>
+        <p className="text-xs text-muted-foreground/60 text-center font-light">1 credit</p>
       </div>
     </div>
   );

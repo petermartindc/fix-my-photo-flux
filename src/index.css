@@ -114,6 +114,159 @@
     box-shadow: var(--shadow-upload);
   }
 
+  /* Upload Widget Variations */
+
+  /* Style 1: Undulating Wave */
+  @keyframes wave-gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .upload-widget-wave {
+    @apply border-2 border-dashed rounded-xl transition-all duration-300 ease-in-out;
+    background: linear-gradient(-45deg, 
+      hsl(var(--primary) / 0.1), 
+      hsl(var(--secondary) / 0.1), 
+      hsl(var(--accent) / 0.1), 
+      hsl(var(--primary) / 0.1));
+    background-size: 400% 400%;
+    animation: wave-gradient 4s ease-in-out infinite;
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  .upload-widget-wave:hover {
+    @apply scale-[1.02];
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.2);
+  }
+
+  .upload-widget-wave.drag-over {
+    @apply scale-[1.03];
+    border-color: hsl(var(--primary));
+  }
+
+  /* Style 2: Glowing Neon */
+  @keyframes neon-glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.5), 
+                  0 0 10px hsl(var(--primary) / 0.3), 
+                  0 0 15px hsl(var(--primary) / 0.2);
+    }
+    50% { 
+      box-shadow: 0 0 10px hsl(var(--primary) / 0.8), 
+                  0 0 20px hsl(var(--primary) / 0.5), 
+                  0 0 30px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  .upload-widget-glow {
+    @apply border-2 border-dashed rounded-xl transition-all duration-300 ease-in-out;
+    background: hsl(var(--background));
+    border-color: hsl(var(--primary) / 0.6);
+    animation: neon-glow 2s ease-in-out infinite;
+  }
+
+  .upload-widget-glow:hover {
+    @apply scale-[1.02];
+    animation-duration: 1s;
+  }
+
+  .upload-widget-glow.drag-over {
+    @apply scale-[1.03];
+    box-shadow: 0 0 20px hsl(var(--primary) / 1), 
+                0 0 40px hsl(var(--primary) / 0.6), 
+                0 0 60px hsl(var(--primary) / 0.4);
+  }
+
+  /* Style 3: Muted Elegance */
+  .upload-widget-elegant {
+    @apply border-2 border-dashed rounded-xl transition-all duration-500 ease-out;
+    background: linear-gradient(135deg, 
+      hsl(var(--muted) / 0.1), 
+      hsl(var(--muted) / 0.05));
+    border-color: hsl(var(--muted-foreground) / 0.2);
+    backdrop-filter: blur(8px);
+  }
+
+  .upload-widget-elegant:hover {
+    @apply scale-[1.01];
+    border-color: hsl(var(--muted-foreground) / 0.4);
+    box-shadow: 0 4px 20px hsl(var(--muted) / 0.3);
+  }
+
+  .upload-widget-elegant.drag-over {
+    @apply scale-[1.02];
+    border-color: hsl(var(--muted-foreground) / 0.6);
+    background: linear-gradient(135deg, 
+      hsl(var(--muted) / 0.2), 
+      hsl(var(--muted) / 0.1));
+  }
+
+  /* Style 4: Pulsing Energy */
+  @keyframes energy-pulse {
+    0%, 100% { 
+      transform: scale(1);
+      border-color: hsl(var(--primary) / 0.4);
+    }
+    50% { 
+      transform: scale(1.01);
+      border-color: hsl(var(--primary) / 0.8);
+    }
+  }
+
+  .upload-widget-pulse {
+    @apply border-2 border-dashed rounded-xl transition-all duration-300 ease-in-out;
+    background: radial-gradient(circle at center, 
+      hsl(var(--primary) / 0.05), 
+      transparent 70%);
+    animation: energy-pulse 2.5s ease-in-out infinite;
+  }
+
+  .upload-widget-pulse:hover {
+    animation-duration: 1.5s;
+  }
+
+  .upload-widget-pulse.drag-over {
+    animation-duration: 0.8s;
+    background: radial-gradient(circle at center, 
+      hsl(var(--primary) / 0.15), 
+      transparent 70%);
+  }
+
+  /* Style 5: Holographic Shimmer */
+  @keyframes holographic-shift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 100% 25%; }
+    50% { background-position: 0% 75%; }
+    75% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .upload-widget-holographic {
+    @apply border-2 border-dashed rounded-xl transition-all duration-300 ease-in-out;
+    background: linear-gradient(45deg, 
+      hsl(280 100% 70% / 0.1), 
+      hsl(320 100% 70% / 0.1), 
+      hsl(200 100% 70% / 0.1), 
+      hsl(280 100% 70% / 0.1), 
+      hsl(320 100% 70% / 0.1));
+    background-size: 300% 300%;
+    animation: holographic-shift 3s ease-in-out infinite;
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  .upload-widget-holographic:hover {
+    @apply scale-[1.02];
+    animation-duration: 2s;
+    border-color: hsl(var(--primary) / 0.6);
+  }
+
+  .upload-widget-holographic.drag-over {
+    @apply scale-[1.03];
+    animation-duration: 1s;
+    border-color: hsl(var(--primary));
+  }
+
   /* Photo card styles */
   .photo-card {
     @apply relative rounded-xl overflow-hidden transition-all duration-300 mb-6;

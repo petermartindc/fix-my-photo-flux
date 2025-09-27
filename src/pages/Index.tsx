@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Header from "@/components/Header";
-import UploadWidget from "@/components/UploadWidget";
+import UploadWidget1 from "@/components/UploadWidget1";
+import UploadWidget2 from "@/components/UploadWidget2";
+import UploadWidget3 from "@/components/UploadWidget3";
+import UploadWidget4 from "@/components/UploadWidget4";
+import UploadWidget5 from "@/components/UploadWidget5";
 import PhotoFeed from "@/components/PhotoFeed";
 import { PhotoResult, PROCESSING_DURATION, PROGRESS_UPDATE_INTERVAL, DEFAULT_MODEL } from "@/types";
 
@@ -80,21 +84,55 @@ const Index = () => {
       <Header />
       
       <div className="relative">
-        {/* Left Column - Upload Widget - Fixed and aligned with header */}
+        {/* Left Column - Upload Widgets - Fixed and aligned with header */}
         <div className="hidden sm:block left-column-bg rounded-xl p-6 fixed top-[4.5rem] bottom-6 w-[275px] sm:w-[295px] md:w-[315px] lg:w-[335px] xl:w-[355px] overflow-y-auto z-40"
              style={{
                left: 'max(-51px, calc((100vw - 1280px) / 2 - 51px))'
              }}>
-          <UploadWidget 
-            onFileSelect={handleFileSelect}
-            isProcessing={!!processingPhoto}
-          />
+          <div className="space-y-6">
+            <UploadWidget1 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget2 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget3 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget4 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget5 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+          </div>
         </div>
 
         {/* Mobile Upload Widget - Show on small screens */}
         <div className="sm:hidden mb-6 px-6 pt-6">
-          <div className="left-column-bg rounded-xl p-6">
-            <UploadWidget 
+          <div className="left-column-bg rounded-xl p-6 space-y-6">
+            <UploadWidget1 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget2 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget3 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget4 
+              onFileSelect={handleFileSelect}
+              isProcessing={!!processingPhoto}
+            />
+            <UploadWidget5 
               onFileSelect={handleFileSelect}
               isProcessing={!!processingPhoto}
             />

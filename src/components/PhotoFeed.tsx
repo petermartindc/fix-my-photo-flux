@@ -18,7 +18,7 @@ const samplePhotos: PhotoResult[] = [
     id: "1",
     originalUrl: samplePhoto1,
     fixedUrl: samplePhoto1,
-    instructions: "Make the lighting warmer and more golden",
+    instructions: "Give her blue eyes and sandy blonde hair",
     timestamp: "2 minutes ago",
     dimensions: "800x600",
     fileSize: "2.1 MB",
@@ -29,7 +29,7 @@ const samplePhotos: PhotoResult[] = [
     originalUrl: samplePhoto2,
     fixedUrl: samplePhoto2,
     videoUrl: samplePhoto2,
-    instructions: "She had bright green eyes and flowing hair",
+    instructions: "Remove the fire hydrant in the background",
     timestamp: "15 minutes ago",
     dimensions: "600x900",
     fileSize: "1.8 MB",
@@ -39,7 +39,7 @@ const samplePhotos: PhotoResult[] = [
     id: "3",
     originalUrl: samplePhoto3,
     fixedUrl: samplePhoto3,
-    instructions: "Remove the person in the red jacket",
+    instructions: "Change the setting to an outdoor garden",
     timestamp: "1 hour ago",
     dimensions: "800x600",
     fileSize: "2.3 MB",
@@ -49,7 +49,7 @@ const samplePhotos: PhotoResult[] = [
     id: "4",
     originalUrl: samplePhoto4,
     fixedUrl: samplePhoto4,
-    instructions: "Make the hairstyle a blonde pixie cut",
+    instructions: "Change the decoration and style of the interior to a modern and stylish boho-chic aesthetic",
     timestamp: "2 hours ago",
     dimensions: "700x1000",
     fileSize: "1.9 MB",
@@ -60,7 +60,7 @@ const samplePhotos: PhotoResult[] = [
     originalUrl: samplePhoto5,
     fixedUrl: samplePhoto5,
     videoUrl: samplePhoto5,
-    instructions: "Remove background and add sunset",
+    instructions: "Add warm golden hour lighting and remove shadows",
     timestamp: "3 hours ago",
     dimensions: "800x600",
     fileSize: "2.0 MB",
@@ -70,7 +70,7 @@ const samplePhotos: PhotoResult[] = [
     id: "6",
     originalUrl: samplePhoto6,
     fixedUrl: samplePhoto6,
-    instructions: "Fix the overexposed sky",
+    instructions: "Replace the grey sky with a beautiful sunset",
     timestamp: "1 day ago",
     dimensions: "600x850",
     fileSize: "1.7 MB",
@@ -80,7 +80,7 @@ const samplePhotos: PhotoResult[] = [
     id: "7",
     originalUrl: samplePhoto7,
     fixedUrl: samplePhoto7,
-    instructions: "She wore a vintage blue dress",
+    instructions: "Change her outfit to a flowing white dress",
     timestamp: "2 days ago",
     dimensions: "800x600",
     fileSize: "2.4 MB",
@@ -91,7 +91,7 @@ const samplePhotos: PhotoResult[] = [
     originalUrl: samplePhoto8,
     fixedUrl: samplePhoto8,
     videoUrl: samplePhoto8,
-    instructions: "Remove fire hydrant from sidewalk",
+    instructions: "Remove all people from the background and add cherry blossoms",
     timestamp: "3 days ago",
     dimensions: "750x1100",
     fileSize: "2.2 MB",
@@ -102,7 +102,7 @@ const samplePhotos: PhotoResult[] = [
     originalUrl: samplePhoto1,
     fixedUrl: samplePhoto1,
     videoUrl: samplePhoto1,
-    instructions: "Make colors more vibrant and saturated",
+    instructions: "Make the background a cozy coffee shop with warm lighting",
     timestamp: "4 days ago",
     dimensions: "900x650",
     fileSize: "2.8 MB",
@@ -112,7 +112,7 @@ const samplePhotos: PhotoResult[] = [
     id: "10",
     originalUrl: samplePhoto2,
     fixedUrl: samplePhoto2,
-    instructions: "Add subtle makeup and rosy cheeks",
+    instructions: "Add natural makeup with rosy cheeks and glossy lips",
     timestamp: "5 days ago",
     dimensions: "650x950",
     fileSize: "1.5 MB",
@@ -491,6 +491,11 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                         {photo.model}
                       </span>
                     </div>
+                    {photo.instructions && (
+                      <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
+                        "{photo.instructions}"
+                      </p>
+                    )}
                     
                   </div>
                   

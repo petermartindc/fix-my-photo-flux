@@ -123,17 +123,6 @@ const Index = () => {
         <div className="container mx-auto px-6 py-6">
           <div className="ml-0 sm:ml-[311px] md:ml-[331px] lg:ml-[351px] xl:ml-[371px]">
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                <h2 className="text-2xl font-bold flex items-center gap-3">
-                  Recent Fixes 
-                  <span className="bg-secondary text-secondary-foreground text-sm font-normal px-3 py-1 rounded-full">
-                    183
-                  </span>
-                </h2>
-                </div>
-              </div>
-              
               <div className="text-left">
             <PhotoFeed
               onPhotoSelect={handlePhotoSelect}

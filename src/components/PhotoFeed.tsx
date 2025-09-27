@@ -211,6 +211,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
   const [fullscreenPhoto, setFullscreenPhoto] = useState<PhotoResult | null>(null);
   const [animateMode, setAnimateMode] = useState<string | null>(null);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [samplePhotosState, setSamplePhotosState] = useState<PhotoResult[]>(samplePhotos);
   
   const getCurrentView = (photoId: string) => {
     return currentViews[photoId] || 'fixed';
@@ -281,8 +282,22 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
     setAnimateMode(null);
   };
 
+  const handleToggleFavorite = (photoId: string) => {
+    // Handle completed photos
+    onToggleFavorite?.(photoId);
+    
+    // Handle sample photos
+    setSamplePhotosState(prev => 
+      prev.map(photo => 
+        photo.id === photoId 
+          ? { ...photo, favorited: !photo.favorited }
+          : photo
+      )
+    );
+  };
+
   // Filter photos based on favorites toggle
-  const allPhotos = [...completedPhotos, ...samplePhotos];
+  const allPhotos = [...completedPhotos, ...samplePhotosState];
   const filteredPhotos = showFavoritesOnly 
     ? allPhotos.filter(photo => photo.favorited)
     : allPhotos;
@@ -549,7 +564,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                           "{photo.instructions}"
                         </p>
                         <button
-                          onClick={() => onToggleFavorite?.(photo.id)}
+                          onClick={() => handleToggleFavorite(photo.id)}
                           className="group relative p-1 -ml-1"
                           title={photo.favorited ? 'Remove from favorites' : 'Add to favorites'}
                         >

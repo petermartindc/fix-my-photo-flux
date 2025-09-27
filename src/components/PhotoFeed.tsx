@@ -534,7 +534,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                              <div className="aspect-[4/3] rounded mb-1 flex items-center justify-center">
                                <span className="text-white font-bold text-2xl">▶</span>
                              </div>
-                             Create Video
+                              Animate {'>'}
                            </button>
                           <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 peer-hover:opacity-100 transition-opacity pointer-events-none z-10 w-48 text-center leading-relaxed">
                             Create a 5-second animated video

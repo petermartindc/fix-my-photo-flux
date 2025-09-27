@@ -298,6 +298,19 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                          backgroundSize: '200% 100%',
                          animation: 'shimmer 2s ease-in-out infinite'
                        }} />
+                  
+                  {/* Centered progress overlay */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <div className="bg-black/60 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center space-y-3">
+                      <h3 className="font-medium text-white text-sm">Fixing Your Photo</h3>
+                      <div className="w-48 bg-white/20 rounded-full h-4">
+                        <div
+                          className="bg-primary h-4 rounded-full transition-all duration-300"
+                          style={{ width: `${processingProgress}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div className="text-center">
@@ -305,22 +318,6 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                   <p className="text-sm text-muted-foreground">Processing image...</p>
                 </div>
               )}
-              
-              {/* Progress bar overlay */}
-              <div className="absolute top-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-medium text-white text-sm">Fixing Your Photo</h3>
-                  <span className="text-xs text-white/80">
-                    {processingProgress}%
-                  </span>
-                </div>
-                <div className="w-full bg-white/20 rounded-full h-2">
-                  <div
-                    className="bg-primary h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${processingProgress}%` }}
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>

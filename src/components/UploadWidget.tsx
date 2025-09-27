@@ -152,7 +152,7 @@ const UploadWidget = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
       {/* Instructions */}
       <div className="space-y-2">
         <div className="flex items-center gap-2">
-          <label className="text-sm font-medium">Custom Instructions</label>
+          <label className="text-sm font-medium text-muted-foreground">Custom Instructions <span className="opacity-60">(optional)</span></label>
           <div className="relative group">
             <div className="h-4 w-4 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs cursor-help">
               i

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, Share2, RotateCcw, Play, Video, X, ArrowLeft } from "lucide-react";
+import { Download, Share2, RotateCcw, Play, Video, X, ArrowLeft, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PhotoResult, PhotoFeedProps, DEFAULT_MODEL } from "@/types";
 
@@ -394,7 +394,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                           size="lg" 
                           className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-4 text-base shadow-lg hover:shadow-orange-500/25 transition-all"
                         >
-                          <Video className="h-5 w-5 mr-2" />
+                          <Upload className="h-5 w-5 mr-2" />
                           Make Video (5 credits)
                         </Button>
                       </div>
@@ -544,15 +544,15 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                         </button>
                       ) : (
                         <div className="relative">
-                          <button 
-                            onClick={() => handleAnimateClick(photo)}
-                            className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium peer"
-                          >
-                            <div className="aspect-[4/3] bg-white/20 rounded mb-1 flex items-center justify-center backdrop-blur-sm">
-                              <span className="text-white font-bold text-lg">▶</span>
-                            </div>
-                            Animate!
-                          </button>
+                           <button 
+                             onClick={() => handleAnimateClick(photo)}
+                             className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium peer"
+                           >
+                             <div className="aspect-[4/3] rounded mb-1 flex items-center justify-center">
+                               <span className="text-white font-bold text-2xl">▶</span>
+                             </div>
+                             Animate!
+                           </button>
                           <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 peer-hover:opacity-100 transition-opacity pointer-events-none z-10 w-40 text-center leading-relaxed">
                             Create a 5-second animated video
                           </div>

@@ -14,9 +14,8 @@ const Header = () => {
     <header className="fixed top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-6">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img src={logo} alt="FixMyPhoto Logo" className="h-8 w-8" />
-          <h1 className="text-xl font-bold">FixMyPhoto</h1>
+        <div className="flex items-center">
+          <img src={logo} alt="FixMyPhoto Logo" className="h-10" />
         </div>
 
         {/* User info */}

@@ -411,24 +411,23 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                   <div className="px-8 py-16 sm:px-12 sm:py-20 text-center space-y-8">
                     {/* Hero Title */}
                     <div className="space-y-4">
-                      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent leading-tight">
-                        Transform Into Magic
+                      <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                        Make a Video
                       </h1>
-                      <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                        Turn your photo into a captivating 5-second video
+                      <p className="text-xl sm:text-2xl text-muted-foreground/70 max-w-2xl mx-auto leading-relaxed">
+                        Transform your photo into a 5-second video
                       </p>
                     </div>
 
                     {/* Large Thumbnail */}
                     <div className="flex justify-center">
-                      <div className="w-64 h-48 sm:w-80 sm:h-60 bg-muted rounded-2xl overflow-hidden shadow-lg ring-1 ring-border/20 relative group">
+                      <div className="w-72 h-56 sm:w-96 sm:h-72 bg-muted rounded-2xl overflow-hidden shadow-lg ring-1 ring-border/20 relative">
                         <img
                           src={photo.fixedUrl}
                           alt="Your photo"
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-full object-contain"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute inset-0 flex items-center justify-center">
                           <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
                             <Play className="h-8 w-8 text-white" />
                           </div>
@@ -438,24 +437,18 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
 
                     {/* Value Proposition */}
                     <p className="text-lg text-muted-foreground max-w-lg mx-auto">
-                      AI brings photos to life with realistic motion and depth
+                      Watch how AI will magically bring your photo to life
                     </p>
 
                     {/* Massive CTA */}
                     <div className="pt-4">
                       <Button 
                         size="lg"
-                        className="text-xl sm:text-2xl font-bold py-6 px-12 sm:py-8 sm:px-16 bg-gradient-to-r from-primary to-accent hover:from-primary-hover hover:to-accent shadow-2xl hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105 rounded-2xl"
+                        className="text-xl sm:text-2xl font-bold py-6 px-12 sm:py-8 sm:px-16 bg-orange-500 hover:bg-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105 rounded-2xl"
                       >
-                        <Video className="h-6 w-6 sm:h-8 sm:w-8 mr-3" />
-                        Create Magic ✨
+                        Create Video ✨ (5)
                       </Button>
                     </div>
-
-                    {/* Credit info */}
-                    <p className="text-sm text-muted-foreground/70">
-                      5 credits • High-quality video output
-                    </p>
                   </div>
                 </div>
               </div>

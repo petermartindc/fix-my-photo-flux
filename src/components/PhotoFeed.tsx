@@ -314,7 +314,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
         </div>
         <button
           onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-          className={`p-2 rounded-lg transition-all ${
+          className={`p-2 rounded-lg transition-all hover:scale-[1.02] duration-200 ${
             showFavoritesOnly 
               ? 'bg-yellow-500/20 text-yellow-600 border border-yellow-500/30' 
               : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
@@ -402,7 +402,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                   {/* Close button */}
                   <button
                     onClick={handleBackFromAnimate}
-                    className="absolute top-6 right-6 z-10 bg-muted hover:bg-muted/80 text-foreground rounded-full p-2 transition-all"
+                    className="absolute top-6 right-6 z-10 bg-muted hover:bg-muted/80 text-foreground rounded-full p-2 transition-all hover:scale-[1.02] duration-200"
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -483,7 +483,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                         </p>
                         <button
                           onClick={() => handleToggleFavorite(photo.id)}
-                          className="group relative p-1 -ml-1"
+                          className="group relative p-1 -ml-1 hover:scale-[1.02] transition-all duration-200"
                           title={photo.favorited ? 'Remove from favorites' : 'Add to favorites'}
                         >
                           <Star 
@@ -504,7 +504,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                     <div className="grid grid-cols-3 gap-2">
                       <button 
                         onClick={() => setCurrentView(photo.id, 'original')}
-                        className={`p-2 rounded-lg text-xs transition-all ${
+                        className={`p-2 rounded-lg text-xs transition-all hover:scale-[1.02] duration-200 ${
                           getCurrentView(photo.id) === 'original' 
                             ? 'bg-primary text-primary-foreground' 
                             : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
@@ -518,7 +518,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                       
                       <button 
                         onClick={() => setCurrentView(photo.id, 'fixed')}
-                        className={`p-2 rounded-lg text-xs transition-all ${
+                        className={`p-2 rounded-lg text-xs transition-all hover:scale-[1.02] duration-200 ${
                           getCurrentView(photo.id) === 'fixed' 
                             ? 'bg-primary text-primary-foreground' 
                             : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
@@ -533,7 +533,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                       {photo.videoUrl ? (
                         <button 
                           onClick={() => setCurrentView(photo.id, 'video')}
-                          className={`p-2 rounded-lg text-xs transition-all ${
+                          className={`p-2 rounded-lg text-xs transition-all hover:scale-[1.02] duration-200 ${
                             getCurrentView(photo.id) === 'video' 
                               ? 'bg-blue-500 text-white' 
                               : 'bg-secondary text-secondary-foreground hover:bg-secondary-hover'
@@ -551,7 +551,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
                         <div className="relative">
                            <button 
                              onClick={() => handleAnimateClick(photo)}
-                             className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 transition-all font-medium peer"
+                             className="w-full p-2 rounded-lg text-xs bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 text-white hover:shadow-lg hover:shadow-orange-500/25 hover:scale-[1.02] transition-all duration-200 font-medium peer"
                            >
                              <div className="aspect-[4/3] rounded mb-1 flex items-center justify-center">
                                <span className="text-white font-bold text-2xl">▶</span>
@@ -623,7 +623,7 @@ const PhotoFeed = ({ onPhotoSelect, onFixAgain, processingPhoto, processingProgr
             </div>
             <button
               onClick={() => setFullscreenPhoto(null)}
-              className="absolute top-6 right-6 bg-muted hover:bg-muted/80 text-foreground rounded-full p-2 transition-all"
+              className="absolute top-6 right-6 bg-muted hover:bg-muted/80 text-foreground rounded-full p-2 transition-all hover:scale-[1.02] duration-200"
             >
               <X className="h-5 w-5" />
             </button>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { Upload, X, Image as ImageIcon } from "lucide-react";
+import { Upload, X, Image as ImageIcon, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -175,7 +175,8 @@ const UploadWidget5 = ({ onFileSelect, isProcessing }: UploadWidgetProps) => {
         className="w-full btn-primary"
       >
         {isProcessing ? "Processing..." : (
-          <div className="flex items-center justify-center space-x-2">
+          <div className="flex items-center justify-center space-x-3">
+            <Sparkles className="h-4 w-4" />
             <span>Fix My Photo</span>
             <span className="bg-primary-foreground/20 text-primary-foreground text-xs px-1.5 py-0.5 rounded-full font-medium">1</span>
           </div>
